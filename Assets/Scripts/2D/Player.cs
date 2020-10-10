@@ -8,18 +8,14 @@ public class Player : MonoBehaviour
 	public float jumpHeight;
 	public float breakingWallTime,slidingTime;
 	bool isJumping = false, isBreakingWall=false,isSliding=false;
-	float gameSpeed;
-	Rigidbody2D myRigidbody;
-
-	public MovingObjects environment;
+	public Material redMat, greenMat, basicMat;
+	Rigidbody myRigidbody;
 
 
 
 	void Start()
 	{
-		myRigidbody = GetComponent<Rigidbody2D>();
-		environment = FindObjectOfType<MovingObjects>();
-		gameSpeed = environment.speed;
+		myRigidbody = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
@@ -37,20 +33,13 @@ public class Player : MonoBehaviour
 		{
 			Slide();
 		}
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			ChangeGameSpeed(0);
-		}
-		if (Input.GetKeyUp(KeyCode.R))
-		{
-			ChangeGameSpeed(gameSpeed);
-		}
+		myRigidbody.velocity = new Vector3(5, myRigidbody.velocity.y, myRigidbody.velocity.z);
 	}
 
 	void Jump()
 	{
 		isJumping = true;
-		myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpHeight);
+		myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight);
 	}
 	void Punch()
 	{
@@ -61,14 +50,14 @@ public class Player : MonoBehaviour
 	IEnumerator BreakingWall()
 	{
 		isBreakingWall = true;
-		GetComponent<SpriteRenderer>().color = Color.red;
+		GetComponent<MeshRenderer>().material = redMat;
 		float time = 0;
 		while (time<breakingWallTime)
 		{
 			time += Time.deltaTime;
 			yield return null;
 		}
-		GetComponent<SpriteRenderer>().color = Color.white;
+		GetComponent<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
 
@@ -80,31 +69,26 @@ public class Player : MonoBehaviour
 	{
 		isSliding = true;
 		transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
-		GetComponent<SpriteRenderer>().color = Color.green;
+		GetComponent<MeshRenderer>().material = greenMat;
 		float time = 0;
 		while (time < slidingTime)
 		{
 			time += Time.deltaTime;
 			yield return null;
 		}
-		GetComponent<SpriteRenderer>().color = Color.white;
+		GetComponent<MeshRenderer>().material = basicMat;
 		transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 2, transform.localScale.z);
 		isSliding = false;
 	}
-	void ChangeGameSpeed(float speed)
-	{
-		environment.speed = speed;
-	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer==8)
+		if (collision.gameObject.layer == 8)
 		{
 			isJumping = false;
 		}
-
 	}
-	private void OnCollisionStay2D(Collision2D collision)
+	private void OnCollisionStay(Collision collision)
 	{
 		if (collision.gameObject.layer == 9 && isBreakingWall)
 		{

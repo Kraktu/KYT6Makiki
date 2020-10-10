@@ -19,6 +19,6 @@ public class Movable : MonoBehaviour
             rb.AddForce(Vector3.up * 9, ForceMode.Impulse);
         }
 
-        rb.velocity = new Vector3(5, rb.velocity.y, rb.velocity.z);
+        
     }
 }
