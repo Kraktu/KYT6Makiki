@@ -5,18 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-	public float jumpHeight;
-	public float breakingWallTime,slidingTime;
-	bool isJumping = false, isBreakingWall=false,isSliding=false;
+    public float speed = 10f;
+	public float jumpHeight = 5f;
+	public float breakingWallTime, slidingTime;
+	bool isJumping = false, isBreakingWall=false, isSliding=false;
 	public Material redMat, greenMat, basicMat;
 	Rigidbody myRigidbody;
+    public CameraMovable mainCamera = null;
 
 
 
 	void Start()
 	{
 		myRigidbody = GetComponent<Rigidbody>();
+        mainCamera.Speed = speed;
 	}
+
+    void OnValidate()
+    {
+        mainCamera.Speed = speed;
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -33,19 +41,18 @@ public class Player : MonoBehaviour
 		{
 			Slide();
 		}
-		myRigidbody.velocity = new Vector3(5, myRigidbody.velocity.y, myRigidbody.velocity.z);
+		myRigidbody.velocity = new Vector3(speed, myRigidbody.velocity.y, myRigidbody.velocity.z);
 	}
 
 	void Jump()
 	{
 		isJumping = true;
-		myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight);
+        myRigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
 	}
+
 	void Punch()
 	{
-		
 		StartCoroutine(BreakingWall());
-
 	}
 	IEnumerator BreakingWall()
 	{
@@ -65,6 +72,7 @@ public class Player : MonoBehaviour
 	{
 		StartCoroutine(Sliding());
 	}
+
 	IEnumerator Sliding()
 	{
 		isSliding = true;
@@ -88,6 +96,7 @@ public class Player : MonoBehaviour
 			isJumping = false;
 		}
 	}
+
 	private void OnCollisionStay(Collision collision)
 	{
 		if (collision.gameObject.layer == 9 && isBreakingWall)

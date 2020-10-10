@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraMovable : MonoBehaviour
 {
+    public float Speed { get; set; }
     void LateUpdate()
     {
-        transform.Translate(Vector3.right * 5 * Time.deltaTime);
+        transform.Translate(new Vector3(1, 0, 0) * Speed * Time.deltaTime, Space.World);
     }
 }
