@@ -124,6 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6768116d45efefa4fab18fedbe0c2708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpKey: 4
+  punchKey: 6
+  slideKey: 8
+  stopTimeKey: 10
   speed: 10
   jumpHeight: 10
   breakingWallTime: 1

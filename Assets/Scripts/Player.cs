@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Key jumpKey = Key.Joystick1_A;
+    public Key punchKey = Key.Joystick1_B;
+    public Key slideKey = Key.Joystick1_X;
+    public Key stopTimeKey = Key.Joystick1_Y;
     public float speed = 10f;
 	public float jumpHeight = 5f;
 	public float breakingWallTime, slidingTime;
@@ -22,27 +26,30 @@ public class Player : MonoBehaviour
 
     void OnValidate()
     {
-        mainCamera.Speed = speed;
+        if(mainCamera)
+        {
+            mainCamera.Speed = speed;
+        }
     }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.A) && !isJumping)
+		if (Input.GetKeyDown(GetKeyCode(jumpKey)) && !isJumping)
 		{
 			Jump();
 		}
-		if (Input.GetKeyDown(KeyCode.Z)&&!isBreakingWall)
+		if (Input.GetKeyDown(GetKeyCode(punchKey))&&!isBreakingWall)
 		{
 			Punch();
 		}
-		if (Input.GetKeyDown(KeyCode.E)&&!isSliding)
+		if (Input.GetKeyDown(GetKeyCode(slideKey))&&!isSliding)
 		{
 			Slide();
 		}
-        if(Input.GetKey(KeyCode.R))
+        if(Input.GetKey(GetKeyCode(stopTimeKey)))
         {
-            myRigidbody.velocity = new Vector3(0f, myRigidbody.velocity.y, myRigidbody.velocity.z);
+            StopTime();
         }
         else
         {
@@ -95,6 +102,11 @@ public class Player : MonoBehaviour
 		isSliding = false;
 	}
 
+    private void StopTime()
+    {
+        myRigidbody.velocity = new Vector3(0f, myRigidbody.velocity.y, myRigidbody.velocity.z);
+    }
+
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == 8)
@@ -110,4 +122,77 @@ public class Player : MonoBehaviour
 			Destroy(collision.gameObject);
 		}
 	}
+
+    private KeyCode GetKeyCode(Key key)
+    {
+        switch(key)
+        {
+            case Key.A :
+                return KeyCode.A;
+            case Key.Z :
+                return KeyCode.Z;
+            case Key.E :
+                return KeyCode.E;
+            case Key.R :
+                return KeyCode.R;
+            case Key.Joystick1_A :
+                return KeyCode.Joystick1Button0;
+            case Key.Joystick1_B :
+                return KeyCode.Joystick1Button1;
+            case Key.Joystick1_X :
+                return KeyCode.Joystick1Button2;
+            case Key.Joystick1_Y :
+                return KeyCode.Joystick1Button3;
+            case Key.Joystick2_A :
+                return KeyCode.Joystick2Button0;
+            case Key.Joystick2_B :
+                return KeyCode.Joystick2Button1;
+            case Key.Joystick2_X :
+                return KeyCode.Joystick2Button2;
+            case Key.Joystick2_Y :
+                return KeyCode.Joystick2Button3;
+            case Key.Joystick3_A :
+                return KeyCode.Joystick3Button1;
+            case Key.Joystick3_B :
+                return KeyCode.Joystick3Button2;
+            case Key.Joystick3_X :
+                return KeyCode.Joystick3Button3;
+            case Key.Joystick3_Y :
+                return KeyCode.Joystick3Button4;
+            case Key.Joystick4_A :
+                return KeyCode.Joystick4Button0;
+            case Key.Joystick4_B :
+                return KeyCode.Joystick4Button1;
+            case Key.Joystick4_X :
+                return KeyCode.Joystick4Button2;
+            case Key.Joystick4_Y :
+                return KeyCode.Joystick4Button3;
+            default :
+                return KeyCode.A;
+        }
+    }
+
+    public enum Key
+    {
+        A,
+        Z,
+        E,
+        R,
+        Joystick1_A,
+        Joystick1_B,
+        Joystick1_X,
+        Joystick1_Y,
+        Joystick2_A,
+        Joystick2_B,
+        Joystick2_X,
+        Joystick2_Y,
+        Joystick3_A,
+        Joystick3_B,
+        Joystick3_X,
+        Joystick3_Y,
+        Joystick4_A,
+        Joystick4_B,
+        Joystick4_X,
+        Joystick4_Y,
+    }
 }
