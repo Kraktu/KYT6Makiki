@@ -124,10 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6768116d45efefa4fab18fedbe0c2708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpKey: 4
-  punchKey: 6
+  jumpKey: 0
+  punchKey: 3
   slideKey: 8
-  stopTimeKey: 10
+  stopTimeKey: 4
   speed: 10
   jumpHeight: 10
   breakingWallTime: 1
@@ -135,4 +135,5 @@ MonoBehaviour:
   redMat: {fileID: 2100000, guid: be80a9050da34dd41937498d79ba0de7, type: 2}
   greenMat: {fileID: 2100000, guid: 536337b8c214aac4d882a0d745dd80f5, type: 2}
   basicMat: {fileID: 2100000, guid: 95c316d163443b747a9e8b02a145bc6b, type: 2}
-  mainCamera: {fileID: 0}
+  lights: []
+  switchingOffSpeed: 3

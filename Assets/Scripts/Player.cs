@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
+    public StuckChecker StuckChecker {get; set;}
     public Key jumpKey = Key.Joystick1_A;
     public Key punchKey = Key.Joystick1_B;
     public Key slideKey = Key.Joystick1_X;
@@ -13,24 +15,20 @@ public class Player : MonoBehaviour
 	public float breakingWallTime, slidingTime;
 	bool isJumping = false, isBreakingWall=false, isSliding=false;
 	public Material redMat, greenMat, basicMat;
+    public List<Light> lights;
+    public float timeStoppedDelay = 1f;
 	Rigidbody myRigidbody;
-    public CameraMovable mainCamera = null;
+    private bool isStoppingTime;
+    private List<Tween> switchLightTweens;
 
 
 
 	void Start()
 	{
 		myRigidbody = GetComponent<Rigidbody>();
-        mainCamera.Speed = speed;
+        switchLightTweens = new List<Tween>();
+        isStoppingTime = false;
 	}
-
-    void OnValidate()
-    {
-        if(mainCamera)
-        {
-            mainCamera.Speed = speed;
-        }
-    }
 
 	// Update is called once per frame
 	void Update()
@@ -47,13 +45,17 @@ public class Player : MonoBehaviour
 		{
 			Slide();
 		}
-        if(Input.GetKey(GetKeyCode(stopTimeKey)))
+        if(Input.GetKeyDown(GetKeyCode(stopTimeKey)))
         {
             StopTime();
         }
-        else
+        else if(Input.GetKeyUp(GetKeyCode(stopTimeKey)))
         {
-	    	myRigidbody.velocity = new Vector3(speed, myRigidbody.velocity.y, myRigidbody.velocity.z);
+            RestartTime();
+        }
+        if(!isStoppingTime)
+        {
+            myRigidbody.velocity = new Vector3(speed, myRigidbody.velocity.y, myRigidbody.velocity.z);
         }
 	}
 
@@ -104,7 +106,58 @@ public class Player : MonoBehaviour
 
     private void StopTime()
     {
+        if(StuckChecker.CollisionsCount > 0)
+        {
+            return;
+        }
         myRigidbody.velocity = new Vector3(0f, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        isStoppingTime = true;
+        StartPauseDelay();
+    }
+
+    private void RestartTime()
+    {
+        if(StuckChecker.CollisionsCount > 0)
+        {
+            return;
+        }
+        isStoppingTime = false;
+        StopPauseDelay();
+    }
+
+    public void StartPauseDelay()
+    {
+        foreach(Tween tween in switchLightTweens)
+        {
+            tween.Kill();
+        }
+        switchLightTweens.Clear();
+
+        foreach(Light light in lights)
+        {
+            Tween tween = light.DOIntensity(0f, timeStoppedDelay).OnComplete(() => EndGame());
+            switchLightTweens.Add(tween);
+        }
+    }
+
+    public void StopPauseDelay()
+    {
+        foreach(Tween tween in switchLightTweens)
+        {
+            tween.Kill();
+        }
+        switchLightTweens.Clear();
+
+        foreach(Light light in lights)
+        {
+            Tween tween = light.DOIntensity(1f, 0.3f).SetEase(Ease.OutQuint);
+            switchLightTweens.Add(tween);
+        }
+    }
+
+    private void EndGame()
+    {
+
     }
 
 	private void OnCollisionEnter(Collision collision)
@@ -119,6 +172,8 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.layer == 9 && isBreakingWall)
 		{
+            StuckChecker.CollisionsCount--;
+            StopPauseDelay();
 			Destroy(collision.gameObject);
 		}
 	}
