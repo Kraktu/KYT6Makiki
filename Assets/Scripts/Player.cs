@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public float speed = 10f;
 	public float jumpHeight = 5f;
 	public float breakingWallTime, slidingTime;
@@ -41,7 +40,14 @@ public class Player : MonoBehaviour
 		{
 			Slide();
 		}
-		myRigidbody.velocity = new Vector3(speed, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        if(Input.GetKey(KeyCode.R))
+        {
+            myRigidbody.velocity = new Vector3(0f, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        }
+        else
+        {
+	    	myRigidbody.velocity = new Vector3(speed, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        }
 	}
 
 	void Jump()
