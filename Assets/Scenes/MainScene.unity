@@ -2888,6 +2888,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075994743}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &2127087321 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1880042478448999142, guid: 22234a0431c032a4cb364f52694c5246,
+    type: 3}
+  m_PrefabInstance: {fileID: 8951687589572413746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2127087322 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7850837589016562778, guid: 22234a0431c032a4cb364f52694c5246,
+    type: 3}
+  m_PrefabInstance: {fileID: 8951687589572413746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1129487231308628484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2999,6 +3011,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lightIntesityAdded
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937527706130511303, guid: 12d4f4467b8635b418acce9713e6a03a,
+        type: 3}
+      propertyPath: timeStoppedDelay
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
@@ -3240,6 +3257,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932866303917752862, guid: 22234a0431c032a4cb364f52694c5246,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 2127087322}
+    - target: {fileID: 1932866303917752862, guid: 22234a0431c032a4cb364f52694c5246,
+        type: 3}
+      propertyPath: musicReverb
+      value: 
+      objectReference: {fileID: 2127087321}
+    - target: {fileID: 7850837589016562778, guid: 22234a0431c032a4cb364f52694c5246,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8599538887469468528, guid: 22234a0431c032a4cb364f52694c5246,
         type: 3}

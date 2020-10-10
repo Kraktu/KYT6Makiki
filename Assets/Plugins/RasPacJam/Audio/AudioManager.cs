@@ -9,6 +9,8 @@ namespace RasPacJam.Audio
         public static AudioManager Instance => instance;
 
         [SerializeField] private List<Sound> sounds = null;
+        public AudioSource music = null;
+        public AudioSource musicReverb = null;
         private static AudioManager instance;
         private Dictionary<string, float> lastPlayedTimes;
 

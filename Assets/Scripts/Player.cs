@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using RasPacJam.Audio;
 
 public class Player : MonoBehaviour
 {
@@ -140,9 +141,11 @@ public class Player : MonoBehaviour
 
         foreach(Light light in lights)
         {
-            Tween tween = light.DOIntensity(0f, timeStoppedDelay).OnComplete(() => EndGame());
+            Tween tween = light.DOIntensity(0f, timeStoppedDelay).OnComplete(() => Die());
             switchLightTweens.Add(tween);
         }
+
+        switchLightTweens.Add(AudioManager.Instance.musicReverb.DOFade(1f, timeStoppedDelay));
     }
 
     public void StopPauseDelay()
@@ -158,13 +161,16 @@ public class Player : MonoBehaviour
             Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
             switchLightTweens.Add(tween);
         }
+
+        switchLightTweens.Add(AudioManager.Instance.musicReverb.DOFade(0f, 0.3f).SetEase(Ease.OutQuint));
     }
 
-    private void EndGame()
+    private void Die()
     {
-
+        AudioManager.Instance.music.DOFade(0f, 0.5f);
     }
-	 private void CollectGem()
+
+	private void CollectGem()
 	{
 		currentNbrOfGems++;
 		if (currentNbrOfGems%lightStep==0)
