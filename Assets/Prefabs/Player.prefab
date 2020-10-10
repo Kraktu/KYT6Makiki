@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpKey: 0
-  punchKey: 3
-  slideKey: 8
-  stopTimeKey: 4
+  punchKey: 1
+  slideKey: 2
+  stopTimeKey: 3
   speed: 10
   jumpHeight: 10
   breakingWallTime: 1
@@ -136,4 +136,4 @@ MonoBehaviour:
   greenMat: {fileID: 2100000, guid: 536337b8c214aac4d882a0d745dd80f5, type: 2}
   basicMat: {fileID: 2100000, guid: 95c316d163443b747a9e8b02a145bc6b, type: 2}
   lights: []
-  switchingOffSpeed: 3
+  timeStoppedDelay: 1
