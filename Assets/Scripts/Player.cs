@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	Rigidbody myRigidbody;
     private bool isStoppingTime;
     private List<Tween> switchLightTweens;
+	Vector3 startingPosition,initialCamerPosition;
+
 
 	//Phil joue au codeur
 
@@ -33,6 +35,9 @@ public class Player : MonoBehaviour
 		myRigidbody = GetComponent<Rigidbody>();
         switchLightTweens = new List<Tween>();
         isStoppingTime = false;
+		startingPosition = transform.position;
+		initialCamerPosition = Camera.main.transform.position;
+
 	}
 
 	// Update is called once per frame
@@ -162,9 +167,13 @@ public class Player : MonoBehaviour
 
     private void EndGame()
     {
+		transform.position = startingPosition;
+		Camera.main.transform.position = initialCamerPosition;
+		RestartTime();
 
-    }
-	 private void CollectGem()
+
+	}
+	private void CollectGem()
 	{
 		currentNbrOfGems++;
 		if (currentNbrOfGems%lightStep==0)
@@ -175,6 +184,13 @@ public class Player : MonoBehaviour
 				Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
 				switchLightTweens.Add(tween);
 			}
+		}
+	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer==11)
+		{
+			EndGame();
 		}
 	}
 	private void OnCollisionEnter(Collision collision)
