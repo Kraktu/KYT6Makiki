@@ -21,7 +21,12 @@ public class Player : MonoBehaviour
     private bool isStoppingTime;
     private List<Tween> switchLightTweens;
 
+	//Phil joue au codeur
 
+	public int lightStep;
+	int currentNbrOfGems;
+	public float lightIntesityAdded;
+	float currentLightIntensity=1;
 
 	void Start()
 	{
@@ -150,7 +155,7 @@ public class Player : MonoBehaviour
 
         foreach(Light light in lights)
         {
-            Tween tween = light.DOIntensity(1f, 0.3f).SetEase(Ease.OutQuint);
+            Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
             switchLightTweens.Add(tween);
         }
     }
@@ -159,12 +164,29 @@ public class Player : MonoBehaviour
     {
 
     }
-
+	 private void CollectGem()
+	{
+		currentNbrOfGems++;
+		if (currentNbrOfGems%lightStep==0)
+		{
+			currentLightIntensity = 1 + currentNbrOfGems / lightStep * lightIntesityAdded;
+			foreach (Light light in lights)
+			{
+				Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
+				switchLightTweens.Add(tween);
+			}
+		}
+	}
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == 8)
 		{
 			isJumping = false;
+		}
+		if (collision.gameObject.layer ==10)
+		{
+			CollectGem();
+			Destroy(collision.gameObject);
 		}
 	}
 
