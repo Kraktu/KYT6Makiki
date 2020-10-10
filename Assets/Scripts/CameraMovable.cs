@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovable : MonoBehaviour
 {
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.Translate(Vector3.right * 5 * Time.deltaTime);
     }
