@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    private KeyCode GetKeyCode(Key key)
+    public static KeyCode GetKeyCode(Key key)
     {
         switch(key)
         {
