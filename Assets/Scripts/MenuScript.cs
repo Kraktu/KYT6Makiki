@@ -15,7 +15,8 @@ public class MenuScript : MonoBehaviour
 	public MenuBackgroundSpin background;
 	bool playerOneReady, playerTwoReady, playerThreeReady, playerFourReady;
 
-	public Material redMat, greenMat, basicMat,emissivMat;
+	Vector3 playerSize;
+	public Material redMat, greenMat, basicMat,emissivMat,matPlay;
 	private void Start()
 	{
 		rbPlayer1 = player1.GetComponent<Rigidbody>();
@@ -31,20 +32,20 @@ public class MenuScript : MonoBehaviour
 		}
 		else if (Input.GetKeyUp(Player.GetKeyCode(jumpKey)))
 		{
-			pLetter.material = basicMat;
+			pLetter.material = matPlay;
 			playerOneReady = false;
 		}
 		if (Input.GetKeyDown(Player.GetKeyCode(slideKey)))
 		{
 			playerTwoReady = true;
 			lLetter.material = emissivMat;
-			player2.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
+			player2.transform.localScale = new Vector3(player2.transform.localScale.x/2, player2.transform.localScale.y / 2, player2.transform.localScale.z/2);
 		}
 		else if (Input.GetKeyUp(Player.GetKeyCode(slideKey)))
 		{
 			playerTwoReady = false;
-			player2.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-			lLetter.material = basicMat;
+			player2.transform.localScale = player2.transform.localScale*2;
+			lLetter.material = matPlay;
 		}
 
 		if (Input.GetKeyDown(Player.GetKeyCode(stopTimeKey)))
@@ -57,8 +58,8 @@ public class MenuScript : MonoBehaviour
 		else if (Input.GetKeyUp(Player.GetKeyCode(stopTimeKey)))
 		{
 			playerThreeReady = false;
-			aLetter.material = basicMat;
-			background.speed = 10;
+			aLetter.material = matPlay;
+			background.speed = 50;
 		}
 		if (Input.GetKeyDown(Player.GetKeyCode(punchKey)))
 		{
@@ -72,7 +73,7 @@ public class MenuScript : MonoBehaviour
 			playerFourReady = false;
 			somethingToDestroy.enabled = true;
 			player4.GetComponent<MeshRenderer>().material = basicMat;
-			yLetter.material = basicMat;
+			yLetter.material = matPlay;
 		}
 
 		if (playerOneReady&&playerTwoReady&&playerThreeReady&&playerFourReady)
