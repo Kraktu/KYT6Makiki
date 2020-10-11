@@ -2065,8 +2065,8 @@ GameObject:
   - component: {fileID: 1130668810}
   - component: {fileID: 1130668809}
   - component: {fileID: 1130668808}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 8
+  m_Name: platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2416,6 +2416,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 580856835}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1286239549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286239543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673061c8d1091184e893328e557a9806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isJumping: 0
 --- !u!1 &1296402274
 GameObject:
   m_ObjectHideFlags: 0
