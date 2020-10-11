@@ -23,7 +23,10 @@ public class Player : MonoBehaviour
     private bool mustDie;
     [HideInInspector] public bool isReturningToStart;
     private List<Tween> switchLightTweens;
+    private Tween cameraTween;
 	Vector3 startingPosition,initialCamerPosition;
+    float initialCameraOffset = -15f;
+    float farCameraOffset = -40f;
 
 
 	//Phil joue au codeur
@@ -111,7 +114,7 @@ public class Player : MonoBehaviour
 	IEnumerator BreakingWall()
 	{
 		isBreakingWall = true;
-		GetComponent<MeshRenderer>().material = redMat;
+		GetComponentInChildren<MeshRenderer>().material = redMat;
 		float time = 0;
 		float tRatio;
 		//Vector3 initialSize = gameObject.transform.localScale;
@@ -128,7 +131,7 @@ public class Player : MonoBehaviour
 		waveBreakingScript.gameObject.GetComponent<SphereCollider>().enabled = false;
 		myLight.intensity = 0;
 	//	transform.localScale = initialSize;
-		GetComponent<MeshRenderer>().material = basicMat;
+		GetComponentInChildren<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
 
@@ -142,7 +145,7 @@ public class Player : MonoBehaviour
 		roofedScript.gameObject.SetActive(true);
 		isSliding = true;
 		transform.localScale = new Vector3(transform.localScale.x/2, transform.localScale.y / 2, transform.localScale.z/2);
-		GetComponent<MeshRenderer>().material = greenMat;
+		GetComponentInChildren<MeshRenderer>().material = greenMat;
 		float time = 0;
 		while (time < slidingTime)
 		{
@@ -163,7 +166,7 @@ public class Player : MonoBehaviour
 	{
 		if (isSliding)
 		{
-			GetComponent<MeshRenderer>().material = basicMat;
+			GetComponentInChildren<MeshRenderer>().material = basicMat;
 			transform.localScale = new Vector3(transform.localScale.x * 2, transform.localScale.y * 2, transform.localScale.z * 2);
 			isSliding = false;
 		}
@@ -176,6 +179,12 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        FollowingCamera camera = Camera.main.GetComponent<FollowingCamera>();
+        if(cameraTween != null)
+        {
+            cameraTween.Kill();
+        }
+        cameraTween = DOTween.To(() => camera.offset, value => camera.offset = value, new Vector3(camera.offset.x, camera.offset.y, farCameraOffset), 1f).SetEase(Ease.OutQuint);
         myRigidbody.velocity = new Vector3(0f, myRigidbody.velocity.y, myRigidbody.velocity.z);
         isStoppingTime = true;
         StartPauseDelay();
@@ -187,6 +196,13 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
+        FollowingCamera camera = Camera.main.GetComponent<FollowingCamera>();
+        if(cameraTween != null)
+        {
+            cameraTween.Kill();
+        }
+        cameraTween = DOTween.To(() => camera.offset, value => camera.offset = value, new Vector3(camera.offset.x, camera.offset.y, initialCameraOffset), 1f).SetEase(Ease.OutQuint);
         isStoppingTime = false;
         StopPauseDelay();
     }

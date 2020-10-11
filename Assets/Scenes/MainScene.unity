@@ -372,6 +372,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceshipBottom (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6884820227457439521, guid: 5d5854520a25fa045baa81ef8bb8d6a6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5854520a25fa045baa81ef8bb8d6a6, type: 3}
 --- !u!4 &199616325 stripped
@@ -4836,6 +4841,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1129487232377235299, guid: 12d4f4467b8635b418acce9713e6a03a,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1129487232377235310, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: m_Mesh
@@ -4929,17 +4939,17 @@ PrefabInstance:
     - target: {fileID: 6937527706130511303, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: jumpKey
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6937527706130511303, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: punchKey
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6937527706130511303, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: slideKey
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6937527706130511303, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
@@ -5115,6 +5125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpaceshipBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884820227457439521, guid: 5d5854520a25fa045baa81ef8bb8d6a6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
