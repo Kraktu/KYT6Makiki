@@ -29,7 +29,12 @@ public class Player : MonoBehaviour
 	public int lightStep;
 	int currentNbrOfGems;
 	public float lightIntesityAdded;
-	float currentLightIntensity=1;
+	float currentLightIntensity = 1;
+
+	// Phil Reprend le contrôle
+
+	public List<GameObject> destroyedObstacles = new List<GameObject>();
+	RoofedScript roofedScript;
 
 	void Start()
 	{
@@ -38,6 +43,8 @@ public class Player : MonoBehaviour
         isStoppingTime = false;
 		startingPosition = transform.position;
 		initialCamerPosition = Camera.main.transform.position;
+		roofedScript = GetComponentInChildren<RoofedScript>();
+		roofedScript.gameObject.SetActive(false);
 
 	}
 
@@ -101,8 +108,9 @@ public class Player : MonoBehaviour
 
 	IEnumerator Sliding()
 	{
+		roofedScript.gameObject.SetActive(true);
 		isSliding = true;
-		transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
+		transform.localScale = new Vector3(transform.localScale.x/2, transform.localScale.y / 2, transform.localScale.z/2);
 		GetComponent<MeshRenderer>().material = greenMat;
 		float time = 0;
 		while (time < slidingTime)
@@ -110,9 +118,25 @@ public class Player : MonoBehaviour
 			time += Time.deltaTime;
 			yield return null;
 		}
-		GetComponent<MeshRenderer>().material = basicMat;
-		transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 2, transform.localScale.z);
-		isSliding = false;
+		if (roofedScript.isRoofed==true)
+		{
+			roofedScript.detectExit = true;
+		}
+		else
+		{
+			ExitSlide();
+		}
+		
+	}
+	public void ExitSlide()
+	{
+		if (isSliding)
+		{
+			GetComponent<MeshRenderer>().material = basicMat;
+			transform.localScale = new Vector3(transform.localScale.x * 2, transform.localScale.y * 2, transform.localScale.z * 2);
+			isSliding = false;
+		}
+		
 	}
 
     private void StopTime()
@@ -176,6 +200,10 @@ public class Player : MonoBehaviour
 
 		transform.position = startingPosition;
 		Camera.main.transform.position = initialCamerPosition;
+		for (int i = 0; i < destroyedObstacles.Count; i++)
+		{
+			destroyedObstacles[i].SetActive(true);
+		}
 		RestartTime();
 	}
 
@@ -218,7 +246,8 @@ public class Player : MonoBehaviour
 		{
             StuckChecker.CollisionsCount--;
             StopPauseDelay();
-			Destroy(collision.gameObject);
+			destroyedObstacles.Add(collision.gameObject);
+			collision.gameObject.SetActive(false);
 		}
 	}
 
