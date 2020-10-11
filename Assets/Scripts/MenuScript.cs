@@ -27,6 +27,7 @@ public class MenuScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(Player.GetKeyCode(jumpKey)))
 		{
+            AudioManager.Instance.Play("jump");
 			if (player1.GetComponent<MenuJumpScript>().isJumping==false)
 			{
 				rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
@@ -42,12 +43,14 @@ public class MenuScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(Player.GetKeyCode(slideKey)))
 		{
+            AudioManager.Instance.Play("unscale");
 			playerTwoReady = true;
 			lLetter.material = emissivMat;
 			player2.transform.localScale = new Vector3(player2.transform.localScale.x/2, player2.transform.localScale.y / 2, player2.transform.localScale.z/2);
 		}
 		else if (Input.GetKeyUp(Player.GetKeyCode(slideKey)))
 		{
+            AudioManager.Instance.Play("rescale");
 			playerTwoReady = false;
 			player2.transform.localScale = player2.transform.localScale*2;
 			lLetter.material = matPlay;
@@ -55,6 +58,7 @@ public class MenuScript : MonoBehaviour
 
 		if (Input.GetKeyDown(Player.GetKeyCode(stopTimeKey)))
 		{
+            AudioManager.Instance.Play("stop");
 			playerThreeReady = true;
 			aLetter.material = emissivMat;
 			background.speed = 0;
@@ -68,6 +72,7 @@ public class MenuScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(Player.GetKeyCode(punchKey)))
 		{
+            AudioManager.Instance.Play("breakingWave");
 			playerFourReady = true;
 			yLetter.material = emissivMat;
 			somethingToDestroy.enabled = false;
