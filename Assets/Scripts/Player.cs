@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 	RoofedScript roofedScript;
 	public Vector3 sizeWhenDestroying=new Vector3(3,3,3);
 	public Light[] firstBatchOfLights,secondBatchOfLights,thirdBatchOfLights;
+	Light myLight;
 
 
 	void Start()
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
 		initialCamerPosition = Camera.main.transform.position;
 		roofedScript = GetComponentInChildren<RoofedScript>();
 		roofedScript.gameObject.SetActive(false);
+		myLight = GetComponentInChildren<Light>();
 
 	}
 
@@ -110,15 +112,17 @@ public class Player : MonoBehaviour
 		GetComponent<MeshRenderer>().material = redMat;
 		float time = 0;
 		float tRatio;
-		Vector3 initialSize = gameObject.transform.localScale;
+		//Vector3 initialSize = gameObject.transform.localScale;
 		while (time<breakingWallTime)
 		{
 			tRatio = time / breakingWallTime;
-			transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
+			myLight.intensity = Mathf.Lerp(0, 80, tRatio);
+			//transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
 			time += Time.deltaTime;
 			yield return null;
 		}
-		transform.localScale = initialSize;
+		myLight.intensity = 0;
+	//	transform.localScale = initialSize;
 		GetComponent<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
