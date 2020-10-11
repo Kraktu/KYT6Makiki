@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7165157449559245374}
   - component: {fileID: 4939102942665504500}
   - component: {fileID: 5037977028991861357}
+  - component: {fileID: 7025071215442467873}
   m_Layer: 0
   m_Name: SpaceshipBottom
   m_TagString: Untagged
@@ -96,3 +97,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7025071215442467873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884820227457439521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.137022, y: 1.9683366, z: 1.0000002}
+  m_Center: {x: 0.029979467, y: 0.963449, z: -0.5}
