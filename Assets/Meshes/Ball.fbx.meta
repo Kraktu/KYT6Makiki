@@ -3,7 +3,22 @@ guid: 61af577e3ad522247bc2733d92440ef8
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_Ball
+    second: {fileID: 2100000, guid: 88662d6eaf266f24db8ec010f44aca7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_BallOutline
+    second: {fileID: 2100000, guid: d96187fac72b92541abb372875510b4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_InsideBall
+    second: {fileID: 2100000, guid: 33f9ff5cbbd8f634f821c2f4dc3e3d68, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -88,7 +103,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
