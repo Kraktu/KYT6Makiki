@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 	Rigidbody myRigidbody;
     private bool isStoppingTime;
     private List<Tween> switchLightTweens;
-	Vector3 startingPosition,initialCamerPosition;
+	Vector3 startingPosition,initialCamerPosition; 
 
 
 	//Phil joue au codeur
@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
 
 	public List<GameObject> destroyedObstacles = new List<GameObject>();
 	RoofedScript roofedScript;
+	public Vector3 sizeWhenDestroying=new Vector3(3,3,3);
+	public Light[] firstBatchOfLights,secondBatchOfLights,thirdBatchOfLights;
+
 
 	void Start()
 	{
@@ -92,11 +95,16 @@ public class Player : MonoBehaviour
 		isBreakingWall = true;
 		GetComponent<MeshRenderer>().material = redMat;
 		float time = 0;
+		float tRatio;
+		Vector3 initialSize = gameObject.transform.localScale;
 		while (time<breakingWallTime)
 		{
+			tRatio = time / breakingWallTime;
+			transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
 			time += Time.deltaTime;
 			yield return null;
 		}
+		transform.localScale = initialSize;
 		GetComponent<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
@@ -212,12 +220,36 @@ public class Player : MonoBehaviour
 		currentNbrOfGems++;
 		if (currentNbrOfGems%lightStep==0)
 		{
-			currentLightIntensity = 1 + currentNbrOfGems / lightStep * lightIntesityAdded;
-			foreach (Light light in lights)
+			//currentLightIntensity = 1 + currentNbrOfGems / lightStep * lightIntesityAdded;
+			//foreach (Light light in lights)
+			//{
+			//	Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
+			//	switchLightTweens.Add(tween);
+			//}
+			switch (currentNbrOfGems/lightStep)
 			{
-				Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
-				switchLightTweens.Add(tween);
+				case 1:
+					for (int i = 0; i < firstBatchOfLights.Length; i++)
+					{
+						firstBatchOfLights[i].gameObject.SetActive(true);
+					}
+					break;
+				case 2:
+					for (int i = 0; i < secondBatchOfLights.Length; i++)
+					{
+						secondBatchOfLights[i].gameObject.SetActive(true);
+					}
+					break;
+				case 3:
+					for (int i = 0; i < thirdBatchOfLights.Length; i++)
+					{
+						thirdBatchOfLights[i].gameObject.SetActive(true);
+					}
+					break;
+				default:
+					break;
 			}
+
 		}
 	}
 	private void OnTriggerEnter(Collider other)
