@@ -262,10 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6768116d45efefa4fab18fedbe0c2708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpKey: 0
-  punchKey: 1
-  slideKey: 2
-  stopTimeKey: 3
+  jumpKey: 4
+  punchKey: 5
+  slideKey: 6
+  stopTimeKey: 7
   speed: 10
   jumpHeight: 10
   breakingWallTime: 1
@@ -283,6 +283,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   timeStoppedDelay: 3
+  isReturningToStart: 0
   lightStep: 1
   lightIntesityAdded: 10
   destroyedObstacles: []
