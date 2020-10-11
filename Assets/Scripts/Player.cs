@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 	public int lightStep;
 	int currentNbrOfGems;
 	public float lightIntesityAdded;
-	float currentLightIntensity = 1;
+	public float currentLightIntensity = 1;
 
 	// Phil Reprend le contrôle
 
