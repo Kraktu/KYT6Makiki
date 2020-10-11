@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 	RoofedScript roofedScript;
 	public Vector3 sizeWhenDestroying=new Vector3(3,3,3);
 	public Light[] firstBatchOfLights,secondBatchOfLights,thirdBatchOfLights;
+	Light myLight;
+	WaveBreaking waveBreakingScript;
 
 
 	void Start()
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour
 		initialCamerPosition = Camera.main.transform.position;
 		roofedScript = GetComponentInChildren<RoofedScript>();
 		roofedScript.gameObject.SetActive(false);
+		myLight = GetComponentInChildren<Light>();
+		waveBreakingScript = GetComponentInChildren<WaveBreaking>();
 
 	}
 
@@ -110,15 +114,20 @@ public class Player : MonoBehaviour
 		GetComponent<MeshRenderer>().material = redMat;
 		float time = 0;
 		float tRatio;
-		Vector3 initialSize = gameObject.transform.localScale;
+		//Vector3 initialSize = gameObject.transform.localScale;
+		waveBreakingScript.gameObject.GetComponent<SphereCollider>().enabled = true;
 		while (time<breakingWallTime)
 		{
 			tRatio = time / breakingWallTime;
-			transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
+			myLight.intensity = Mathf.Lerp(0, 80, tRatio);
+			myLight.gameObject.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 2, tRatio);
+			//transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
 			time += Time.deltaTime;
 			yield return null;
 		}
-		transform.localScale = initialSize;
+		waveBreakingScript.gameObject.GetComponent<SphereCollider>().enabled = false;
+		myLight.intensity = 0;
+	//	transform.localScale = initialSize;
 		GetComponent<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
@@ -309,13 +318,13 @@ public class Player : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.layer == 9 && isBreakingWall)
-		{
-            StuckChecker.CollisionsCount--;
-            StopPauseDelay();
-			destroyedObstacles.Add(collision.gameObject);
-			collision.gameObject.SetActive(false);
-		}
+		//if (collision.gameObject.layer == 9 && isBreakingWall)
+		//{
+        //    StuckChecker.CollisionsCount--;
+        //    StopPauseDelay();
+		//	//destroyedObstacles.Add(collision.gameObject);
+		//	//collision.gameObject.SetActive(false);
+		//}
 	}
 
     public static KeyCode GetKeyCode(Key key)
