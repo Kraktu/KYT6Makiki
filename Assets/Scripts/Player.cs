@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
 	public List<GameObject> destroyedObstacles = new List<GameObject>();
 	RoofedScript roofedScript;
+	public Vector3 sizeWhenDestroying=new Vector3(3,3,3);
 
 	void Start()
 	{
@@ -92,11 +93,16 @@ public class Player : MonoBehaviour
 		isBreakingWall = true;
 		GetComponent<MeshRenderer>().material = redMat;
 		float time = 0;
+		float tRatio;
+		Vector3 initialSize = gameObject.transform.localScale;
 		while (time<breakingWallTime)
 		{
+			tRatio = time / breakingWallTime;
+			transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
 			time += Time.deltaTime;
 			yield return null;
 		}
+		transform.localScale = initialSize;
 		GetComponent<MeshRenderer>().material = basicMat;
 		isBreakingWall = false;
 	}
