@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RasPacJam.Audio;
 
 public class MenuScript : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class MenuScript : MonoBehaviour
 			{
 				rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
 			}
-			
+
 			pLetter.material = emissivMat;
 			playerOneReady = true;
 		}
@@ -82,7 +83,7 @@ public class MenuScript : MonoBehaviour
 
 		if (playerOneReady&&playerTwoReady&&playerThreeReady&&playerFourReady)
 		{
-
+            AudioManager.Instance.Play("start");
 			sceneLoader.LoadLevel(1);
 			Destroy(this);
 		}

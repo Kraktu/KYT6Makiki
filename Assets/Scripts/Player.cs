@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
 
 	void Jump()
 	{
+        AudioManager.Instance.Play("jump");
 		isJumping = true;
         myRigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
 	}
@@ -113,6 +114,7 @@ public class Player : MonoBehaviour
 	}
 	IEnumerator BreakingWall()
 	{
+        AudioManager.Instance.Play("breakingWave");
 		isBreakingWall = true;
 		GetComponentInChildren<MeshRenderer>().material = redMat;
 		float time = 0;
@@ -142,6 +144,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator Sliding()
 	{
+        AudioManager.Instance.Play("unscale");
 		roofedScript.gameObject.SetActive(true);
 		isSliding = true;
 		transform.localScale = new Vector3(transform.localScale.x/2, transform.localScale.y / 2, transform.localScale.z/2);
@@ -166,6 +169,7 @@ public class Player : MonoBehaviour
 	{
 		if (isSliding)
 		{
+            AudioManager.Instance.Play("rescale");
 			GetComponentInChildren<MeshRenderer>().material = basicMat;
 			transform.localScale = new Vector3(transform.localScale.x * 2, transform.localScale.y * 2, transform.localScale.z * 2);
 			isSliding = false;
@@ -179,6 +183,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        AudioManager.Instance.Play("stop");
         FollowingCamera camera = Camera.main.GetComponent<FollowingCamera>();
         if(cameraTween != null)
         {
@@ -245,6 +250,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        AudioManager.Instance.Play("death");
         StuckChecker.CollisionsCount = 0;
         mustDie = false;
         foreach(Collider collider in GetComponentsInChildren<Collider>())
@@ -286,6 +292,7 @@ public class Player : MonoBehaviour
 			//	Tween tween = light.DOIntensity(currentLightIntensity, 0.3f).SetEase(Ease.OutQuint);
 			//	switchLightTweens.Add(tween);
 			//}
+            AudioManager.Instance.Play("allGems");
 			switch (currentNbrOfGems/lightStep)
 			{
 				case 1:
@@ -311,6 +318,11 @@ public class Player : MonoBehaviour
 			}
 
 		}
+        else
+        {
+                    AudioManager.Instance.Play("pickGem");
+
+        }
 	}
 	private void OnTriggerEnter(Collider other)
 	{
