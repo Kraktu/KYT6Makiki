@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 	public Vector3 sizeWhenDestroying=new Vector3(3,3,3);
 	public Light[] firstBatchOfLights,secondBatchOfLights,thirdBatchOfLights;
 	Light myLight;
+	WaveBreaking waveBreakingScript;
 
 
 	void Start()
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
 		roofedScript = GetComponentInChildren<RoofedScript>();
 		roofedScript.gameObject.SetActive(false);
 		myLight = GetComponentInChildren<Light>();
+		waveBreakingScript = GetComponentInChildren<WaveBreaking>();
 
 	}
 
@@ -113,14 +115,17 @@ public class Player : MonoBehaviour
 		float time = 0;
 		float tRatio;
 		//Vector3 initialSize = gameObject.transform.localScale;
+		waveBreakingScript.gameObject.GetComponent<SphereCollider>().enabled = true;
 		while (time<breakingWallTime)
 		{
 			tRatio = time / breakingWallTime;
 			myLight.intensity = Mathf.Lerp(0, 80, tRatio);
+			myLight.gameObject.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 2, tRatio);
 			//transform.localScale = Vector3.Lerp(initialSize, sizeWhenDestroying, tRatio);
 			time += Time.deltaTime;
 			yield return null;
 		}
+		waveBreakingScript.gameObject.GetComponent<SphereCollider>().enabled = false;
 		myLight.intensity = 0;
 	//	transform.localScale = initialSize;
 		GetComponent<MeshRenderer>().material = basicMat;
@@ -313,13 +318,13 @@ public class Player : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.layer == 9 && isBreakingWall)
-		{
-            StuckChecker.CollisionsCount--;
-            StopPauseDelay();
-			destroyedObstacles.Add(collision.gameObject);
-			collision.gameObject.SetActive(false);
-		}
+		//if (collision.gameObject.layer == 9 && isBreakingWall)
+		//{
+        //    StuckChecker.CollisionsCount--;
+        //    StopPauseDelay();
+		//	//destroyedObstacles.Add(collision.gameObject);
+		//	//collision.gameObject.SetActive(false);
+		//}
 	}
 
     public static KeyCode GetKeyCode(Key key)
