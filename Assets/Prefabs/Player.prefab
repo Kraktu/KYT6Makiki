@@ -160,9 +160,9 @@ GameObject:
   - component: {fileID: 1129487232377235311}
   - component: {fileID: 1129487232377235310}
   - component: {fileID: 1129487232377235309}
-  - component: {fileID: 1129487232377235308}
   - component: {fileID: 1129487232377235299}
   - component: {fileID: 6937527706130511303}
+  - component: {fileID: 1341595779139536569}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -234,20 +234,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1129487232377235308
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129487232377235297}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1129487232377235299
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -300,6 +286,23 @@ MonoBehaviour:
   lightStep: 1
   lightIntesityAdded: 10
   destroyedObstacles: []
+  sizeWhenDestroying: {x: 3, y: 3, z: 3}
+  firstBatchOfLights: []
+  secondBatchOfLights: []
+  thirdBatchOfLights: []
+--- !u!135 &1341595779139536569
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129487232377235297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5926513235286570818
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,3 +360,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127b3f63fa95fa14bba205217b7211f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRoofed: 0
+  detectExit: 0

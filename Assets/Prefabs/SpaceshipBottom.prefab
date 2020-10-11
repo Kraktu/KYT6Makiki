@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6106910960217623963}
   - component: {fileID: 7165157449559245374}
   - component: {fileID: 4939102942665504500}
-  - component: {fileID: 1429270999661317613}
   - component: {fileID: 5037977028991861357}
   m_Layer: 0
   m_Name: SpaceshipBottom
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1429270999661317613
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884820227457439521}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 14.137022, y: 1.9683366, z: 1.0000002}
-  m_Center: {x: 0.029979467, y: 0.963449, z: -0.5}
 --- !u!54 &5037977028991861357
 Rigidbody:
   m_ObjectHideFlags: 0
