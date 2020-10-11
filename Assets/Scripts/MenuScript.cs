@@ -26,7 +26,11 @@ public class MenuScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(Player.GetKeyCode(jumpKey)))
 		{
-			rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
+			if (player1.GetComponent<MenuJumpScript>().isJumping==false)
+			{
+				rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
+			}
+			
 			pLetter.material = emissivMat;
 			playerOneReady = true;
 		}

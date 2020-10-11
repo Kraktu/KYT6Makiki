@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
     public float timeStoppedDelay = 1f;
 	Rigidbody myRigidbody;
     private bool isStoppingTime;
+    private bool mustDie;
+    [HideInInspector] public bool isReturningToStart;
     private List<Tween> switchLightTweens;
-	Vector3 startingPosition,initialCamerPosition; 
+	Vector3 startingPosition,initialCamerPosition;
 
 
 	//Phil joue au codeur
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour
 	{
 		myRigidbody = GetComponent<Rigidbody>();
         switchLightTweens = new List<Tween>();
+        mustDie = false;
+        isReturningToStart = false;
         isStoppingTime = false;
 		startingPosition = transform.position;
 		initialCamerPosition = Camera.main.transform.position;
@@ -54,6 +58,16 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        if(isReturningToStart)
+        {
+            return;
+        }
+
+        if(mustDie)
+        {
+            Die();
+        }
+
 		if (Input.GetKeyDown(GetKeyCode(jumpKey)) && !isJumping)
 		{
 			Jump();
@@ -134,7 +148,7 @@ public class Player : MonoBehaviour
 		{
 			ExitSlide();
 		}
-		
+
 	}
 	public void ExitSlide()
 	{
@@ -144,7 +158,7 @@ public class Player : MonoBehaviour
 			transform.localScale = new Vector3(transform.localScale.x * 2, transform.localScale.y * 2, transform.localScale.z * 2);
 			isSliding = false;
 		}
-		
+
 	}
 
     private void StopTime()
@@ -178,11 +192,12 @@ public class Player : MonoBehaviour
 
         foreach(Light light in lights)
         {
-            Tween tween = light.DOIntensity(0f, timeStoppedDelay).OnComplete(() => Die());
+            Tween tween = light.DOIntensity(0f, timeStoppedDelay).OnComplete(() => mustDie = true);
             switchLightTweens.Add(tween);
         }
 
         switchLightTweens.Add(AudioManager.Instance.musicReverb.DOFade(1f, timeStoppedDelay));
+        switchLightTweens.Add(AudioManager.Instance.music.DOFade(0f, timeStoppedDelay));
     }
 
     public void StopPauseDelay()
@@ -200,19 +215,39 @@ public class Player : MonoBehaviour
         }
 
         switchLightTweens.Add(AudioManager.Instance.musicReverb.DOFade(0f, 0.3f).SetEase(Ease.OutQuint));
+        switchLightTweens.Add(AudioManager.Instance.music.DOFade(0.5f, 0.3f).SetEase(Ease.OutQuint));
     }
 
     private void Die()
     {
-        AudioManager.Instance.music.DOFade(0f, 0.5f);
+        StuckChecker.CollisionsCount = 0;
+        mustDie = false;
+        foreach(Collider collider in GetComponentsInChildren<Collider>())
+        {
+            collider.enabled = false;
+        }
+        GetComponent<Rigidbody>().isKinematic = true;
+        isReturningToStart = true;
+        Sequence seq = DOTween.Sequence();
+        seq.Append(transform.DOLocalMoveZ(-3f, 2f).SetEase(Ease.InQuint))
+        .Append(transform.DOMove(startingPosition + new Vector3(0,0,-3), 2f).SetEase(Ease.InQuint))
+        .Append(transform.DOMove(startingPosition, 2f).SetEase(Ease.InQuint).OnComplete(() =>
+                {
+                    foreach(Collider collider in GetComponentsInChildren<Collider>())
+                    {
+                        collider.enabled = true;
+                    }
+                    GetComponent<Rigidbody>().isKinematic = false;
+                    isReturningToStart = false;
+                    RestartTime();
+                    AudioManager.Instance.music.DOFade(0.5f, 0.3f);
+                    AudioManager.Instance.musicReverb.DOFade(0f, 0.3f);
 
-		transform.position = startingPosition;
-		Camera.main.transform.position = initialCamerPosition;
-		for (int i = 0; i < destroyedObstacles.Count; i++)
-		{
-			destroyedObstacles[i].SetActive(true);
-		}
-		RestartTime();
+                    for (int i = 0; i < destroyedObstacles.Count; i++)
+                    {
+                        destroyedObstacles[i].SetActive(true);
+                    }
+                }));
 	}
 
 	private void CollectGem()

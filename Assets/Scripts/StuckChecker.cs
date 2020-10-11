@@ -31,7 +31,7 @@ public class StuckChecker : MonoBehaviour
         if(collider.gameObject.layer == 8 || collider.gameObject.layer == 9)
         {
             CollisionsCount--;
-            if(CollisionsCount == 0)
+            if(!player.isReturningToStart && CollisionsCount == 0)
             {
                 player.StopPauseDelay();
             }
