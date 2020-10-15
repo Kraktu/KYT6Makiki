@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Ground
-  - BreakableWall
-  - Gems
+  - Breakable
+  - Collectible
   - DeathCollider
   - 
   - 
