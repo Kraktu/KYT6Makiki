@@ -99,7 +99,6 @@ public class AutoRun : MonoBehaviour
 
     public void PickUpStar()
     {
-        Instantiate()
         lightsManager.PickUpStar();
     }
 
