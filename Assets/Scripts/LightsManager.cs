@@ -20,6 +20,10 @@ public class LightsManager : MonoBehaviour
         if(starsCount % starsCountForNextLightingLevel == 0)
         {
             int lightsGroupIndex = (starsCount / starsCountForNextLightingLevel);
+			if (lightsGroupIndex>=lights.Count)
+			{
+				return;
+			}
             foreach(Light light in lights[lightsGroupIndex].List)
             {
                 light.gameObject.SetActive(true);
