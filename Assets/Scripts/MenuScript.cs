@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour
 	bool playerOneReady, playerTwoReady, playerThreeReady, playerFourReady;
 
 	Vector3 playerSize;
-	public Material redMat, greenMat, basicMat,emissivMat,matPlay;
+	public Material emissivMat,matPlay;
 	private void Start()
 	{
 		rbPlayer1 = player1.GetComponent<Rigidbody>();
@@ -28,11 +28,11 @@ public class MenuScript : MonoBehaviour
 		if (Input.GetKeyDown(Player.GetKeyCode(jumpKey)))
 		{
             AudioManager.Instance.Play("jump");
-			if (player1.GetComponent<MenuJumpScript>().isJumping==false)
-			{
-				rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
-			}
-
+			//if (player1.GetComponent<MenuJumpScript>().isJumping==false)
+			//{
+			//	rbPlayer1.velocity = new Vector3(rbPlayer1.velocity.x, 10, rbPlayer1.velocity.z);
+			//}
+			player1.GetComponent<JumpController>().Jump();
 			pLetter.material = emissivMat;
 			playerOneReady = true;
 		}
@@ -76,13 +76,11 @@ public class MenuScript : MonoBehaviour
 			playerFourReady = true;
 			yLetter.material = emissivMat;
 			somethingToDestroy.enabled = false;
-			player4.GetComponent<MeshRenderer>().material = redMat;
 		}
 		else if (Input.GetKeyUp(Player.GetKeyCode(punchKey)))
 		{
 			playerFourReady = false;
 			somethingToDestroy.enabled = true;
-			player4.GetComponent<MeshRenderer>().material = basicMat;
 			yLetter.material = matPlay;
 		}
 
