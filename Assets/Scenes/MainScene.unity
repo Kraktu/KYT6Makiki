@@ -3867,7 +3867,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1129487231308628484}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1926632487}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 815a8c0e2ebff89449cc7b618cf22b52, type: 3}
@@ -5357,6 +5357,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2889c6e48ec68147adea398e72c88ba, type: 3}
+--- !u!1 &1926632487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1129487231308628484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926632488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926632487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6768116d45efefa4fab18fedbe0c2708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpKey: 0
+  punchKey: 1
+  slideKey: 2
+  stopTimeKey: 3
 --- !u!1001 &1950129718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6227,6 +6249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 964010365226959435, guid: 12d4f4467b8635b418acce9713e6a03a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
