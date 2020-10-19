@@ -22,10 +22,13 @@ public class PlayerInput : MonoBehaviour
 	private void Start()
 	{
 		inputModeSelection = FindObjectOfType<InputModeSelection>();
-		jumpButton = inputModeSelection.key1;
-		shrinkButton = inputModeSelection.key2;
-		breakingWaveButton = inputModeSelection.key3;
-		freezeButton = inputModeSelection.key4;
+        if(inputModeSelection)
+        {
+            jumpButton = inputModeSelection.key1;
+            shrinkButton = inputModeSelection.key2;
+            breakingWaveButton = inputModeSelection.key3;
+            freezeButton = inputModeSelection.key4;
+        }
 	}
 	private void Update()
     {

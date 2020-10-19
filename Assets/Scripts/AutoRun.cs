@@ -23,11 +23,16 @@ public class AutoRun : MonoBehaviour
     [SerializeField] private LightsManager lightsManager = null;
     [SerializeField] private StuckChecker stuckChecker = null;
     [SerializeField] private Rotator model = null;
+    [SerializeField] private ParticleSystem cloudParticlesPrefab = null;
+    [SerializeField] private ParticleSystem burstParticlesPrefab = null;
+    [SerializeField] private Transform particlesLocation = null;
     [SerializeField] private UnityEvent onStopped = null;
     [SerializeField] private UnityEvent onUnstopped = null;
     [SerializeField] private UnityEvent onDead = null;
+    [SerializeField] private UnityEvent onReset = null;
     private Vector3 startPosition;
     private Rigidbody rb;
+    private ParticleSystem cloudParticles;
     private Sequence deathSequence;
     private bool isStopped;
     private bool isEnabled;
@@ -88,11 +93,13 @@ public class AutoRun : MonoBehaviour
         PlayDeathAnimation();
         lightsManager.SwitchLights(DOTween.Sequence(), true, revivingDelay);
         AudioManager.Instance.Play("death");
+        cloudParticles = Instantiate(cloudParticlesPrefab, particlesLocation);
         onDead.Invoke();
     }
 
     public void PickUpStar()
     {
+        Instantiate()
         lightsManager.PickUpStar();
     }
 
@@ -129,9 +136,9 @@ public class AutoRun : MonoBehaviour
 
         Sequence deathAnimSequence = DOTween.Sequence();
         deathAnimSequence
-                .Append(transform.DOLocalMoveZ(-3f, 2f)
+                .Append(transform.DOLocalMoveZ(-8f, 2f)
                         .SetEase(Ease.InOutBack))
-                .Append(transform.DOMove(startPosition + new Vector3(0,0,-3), 2f)
+                .Append(transform.DOMove(startPosition + new Vector3(0f,0f,-8f), 2f)
                         .SetEase(Ease.InOutBack))
                 .Append(transform.DOMove(startPosition, 2f)
                         .SetEase(Ease.InOutBack))
@@ -147,6 +154,9 @@ public class AutoRun : MonoBehaviour
         }
         SetStopped(false);
         rb.isKinematic = false;
+        Destroy(cloudParticles.gameObject);
+        Instantiate(burstParticlesPrefab, particlesLocation);
+        onReset.Invoke();
 
         Sequence resetSequence = DOTween.Sequence();
         resetSequence
