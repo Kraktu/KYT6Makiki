@@ -1,40 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StuckChecker : MonoBehaviour
 {
-    Player player;
-    public int CollisionsCount {get; set;}
+    [SerializeField] private BreakingWaveLauncher breakingWaveLauncher = null;
+    [SerializeField] private UnityEvent onStuck = null;
+    [SerializeField] private UnityEvent onEscaped = null;
+    private List<Collider> currentCollisions;
+
+
+
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+        currentCollisions.Clear();
+    }
+
+
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
-        player.StuckChecker = this;
-        CollisionsCount = 0;
+        currentCollisions = new List<Collider>();
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void Start()
     {
-        if(collider.gameObject.layer == 8 || collider.gameObject.layer == 9)
+        breakingWaveLauncher.OnObstacleBroken.AddListener(CheckBrokenObstacle);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 8 || other.gameObject.layer == 9)
         {
-            CollisionsCount++;
-            if(CollisionsCount == 1)
+            currentCollisions.Add(other);
+            if(currentCollisions.Count == 1)
             {
-                player.StartPauseDelay();
+                onStuck.Invoke();
             }
         }
     }
 
-    private void OnTriggerExit(Collider collider)
+    private void OnTriggerExit(Collider other)
     {
-        if(collider.gameObject.layer == 8 || collider.gameObject.layer == 9)
+        if(other.gameObject.layer == 8 || other.gameObject.layer == 9)
         {
-            CollisionsCount--;
-            if(!player.isReturningToStart && CollisionsCount == 0)
-            {
-                player.StopPauseDelay();
-            }
+            ExitObstacle(other);
+        }
+    }
+
+    private void ExitObstacle(Collider other)
+    {
+        currentCollisions.Remove(other);
+        if(currentCollisions.Count == 0)
+        {
+            onEscaped.Invoke();
+        }
+    }
+
+    private void CheckBrokenObstacle(Collider brokenObstacle)
+    {
+        if(currentCollisions.Contains(brokenObstacle))
+        {
+            ExitObstacle(brokenObstacle);
         }
     }
 }

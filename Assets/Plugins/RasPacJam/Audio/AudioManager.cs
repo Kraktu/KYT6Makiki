@@ -9,8 +9,8 @@ namespace RasPacJam.Audio
         public static AudioManager Instance => instance;
 
         [SerializeField] private List<Sound> sounds = null;
-        public AudioSource music = null;
-        public AudioSource musicReverb = null;
+        [SerializeField] private AudioSource music = null;
+        [SerializeField] private AudioSource musicReverb = null;
         private static AudioManager instance;
         private Dictionary<string, float> lastPlayedTimes;
 
@@ -25,6 +25,19 @@ namespace RasPacJam.Audio
                 source.PlayOneShot(sound.Clip);
 
                 Destroy(source.gameObject, sound.Clip.length);
+            }
+        }
+
+        public AudioSource GetMusic(MusicName musicName)
+        {
+            switch(musicName)
+            {
+                case MusicName.Main :
+                    return music;
+                case MusicName.Reverb :
+                    return musicReverb;
+                default :
+                    return null;
             }
         }
 
@@ -46,6 +59,11 @@ namespace RasPacJam.Audio
             {
                 lastPlayedTimes[sound.Name] = 0f;
             }
+
+            music.volume = 0.5f;
+            musicReverb.volume = 0f;
+
+            DontDestroyOnLoad(this);
         }
 
         private Sound GetSoundByName(string soundName)
@@ -79,5 +97,11 @@ namespace RasPacJam.Audio
         [SerializeField] private AudioClip clip = null;
         [SerializeField] [Range(0f, 1f)] private float volume = 1f;
         [SerializeField] [Range(0.1f, 3f)] private float pitch = 1f;
+    }
+
+    public enum MusicName
+    {
+        Main,
+        Reverb
     }
 }

@@ -13,7 +13,7 @@ public class MenuScript : MonoBehaviour
 	public GameObject player1, player2, player3, player4;
 	Rigidbody rbPlayer1;
 	public MeshRenderer pLetter, lLetter, aLetter, yLetter, somethingToDestroy;
-	public MenuBackgroundSpin background;
+	public Rotator background;
 	bool playerOneReady, playerTwoReady, playerThreeReady, playerFourReady;
 
 	Vector3 playerSize;
@@ -61,14 +61,14 @@ public class MenuScript : MonoBehaviour
             AudioManager.Instance.Play("stop");
 			playerThreeReady = true;
 			aLetter.material = emissivMat;
-			background.speed = 0;
+			// background.speed = 0;
 
 		}
 		else if (Input.GetKeyUp(Player.GetKeyCode(stopTimeKey)))
 		{
 			playerThreeReady = false;
 			aLetter.material = matPlay;
-			background.speed = 50;
+			// background.speed = 50;
 		}
 		if (Input.GetKeyDown(Player.GetKeyCode(punchKey)))
 		{

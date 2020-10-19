@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5154959848686182977}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5530921750028040443}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 8611046638063709167}
   m_Father: {fileID: 0}
@@ -97,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07a3706f23f878c4a94f521331b10640,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 07a3706f23f878c4a94f521331b10640,
         type: 3}

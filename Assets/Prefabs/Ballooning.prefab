@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6302077433915006265}
   - component: {fileID: 4074626641404402463}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ballooning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6646937729201473411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647072624527079827}
   m_Father: {fileID: 0}
@@ -117,6 +117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ballooning
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80083e81341cdae4fab186a9b0e4da33,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 80083e81341cdae4fab186a9b0e4da33,
         type: 3}

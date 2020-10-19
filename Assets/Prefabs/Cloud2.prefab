@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5413728410814896860}
   - component: {fileID: 8742033777157693123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cloud2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4641731148341280870}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 5166664813800428874}
   m_Father: {fileID: 0}
@@ -117,6 +117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cloud2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ac7a3b74797ce744adf7ea0e28b39e1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 3ac7a3b74797ce744adf7ea0e28b39e1,
         type: 3}
