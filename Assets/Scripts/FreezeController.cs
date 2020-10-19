@@ -16,49 +16,51 @@ public class FreezeController : MonoBehaviour
 
 
 
-	#region bidouillage Phil ancien système
-	public void Freeze(bool unFreezing)
-	{
-		if (!isFreezing && !canFreeze)
-		{
-			return;
-		}
+    public void Freeze(InputAction.CallbackContext action)
+    {
+       if(!isFreezing && !canFreeze)
+       {
+           return;
+       }
 
-		if (!unFreezing)
-		{
-			isFreezing = true;
-			AudioManager.Instance.Play("freezing");
-			onFreezed.Invoke();
-		}
-		else
-		{
-			isFreezing = false;
-			// AudioManager.Instance.Play("unfreezing");
-			onUnfreezed.Invoke();
-		}
-	}
-	#endregion
+       if(action.started)
+       {
+           isFreezing = true;
+           AudioManager.Instance.Play("freezing");
+           onFreezed.Invoke();
+       }
+       else if(action.canceled)
+       {
+           isFreezing = false;
+           // AudioManager.Instance.Play("unfreezing");
+           onUnfreezed.Invoke();
+       }
+    }
 
-	//public void Freeze(InputAction.CallbackContext action)
-    //{
-    //    if(!isFreezing && !canFreeze)
-    //    {
-    //        return;
-    //    }
-	//
-    //    if(action.started)
-    //    {
-    //        isFreezing = true;
-    //        AudioManager.Instance.Play("freezing");
-    //        onFreezed.Invoke();
-    //    }
-    //    else if(action.canceled)
-    //    {
-    //        isFreezing = false;
-    //        // AudioManager.Instance.Play("unfreezing");
-    //        onUnfreezed.Invoke();
-    //    }
-    //}
+    // old input system
+    public void Freeze()
+    {
+       if(!isFreezing && !canFreeze)
+       {
+           return;
+       }
+
+        isFreezing = true;
+        AudioManager.Instance.Play("freezing");
+        onFreezed.Invoke();
+    }
+
+    public void Unfreeze()
+    {
+       if(!isFreezing && !canFreeze)
+       {
+           return;
+       }
+
+        isFreezing = false;
+        // AudioManager.Instance.Play("unfreezing");
+        onUnfreezed.Invoke();
+    }
 
 
 

@@ -12,7 +12,7 @@ public class PlayersManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerInput player1 = PlayerInput.Instantiate(playerInputPrefab, controlScheme : "Player1");
+        UnityEngine.InputSystem.PlayerInput player1 = UnityEngine.InputSystem.PlayerInput.Instantiate(playerInputPrefab, controlScheme : "Player1");
         player1.transform.SetParent(this.transform);
         player1.neverAutoSwitchControlSchemes = true;
         player1.actions.FindAction("Jump").started += _ => player.GetComponent<JumpController>().Jump();

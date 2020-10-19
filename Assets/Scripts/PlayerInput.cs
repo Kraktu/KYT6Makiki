@@ -1,59 +1,67 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using RasPacJam.Audio;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
-    public Key jumpKey = Key.Joystick1_A;
-    public Key punchKey = Key.Joystick1_B;
-    public Key slideKey = Key.Joystick1_X;
-    public Key stopTimeKey = Key.Joystick1_Y;
+    [SerializeField] private Key jumpButton = Key.Joystick1_A;
+    [SerializeField] private Key shrinkButton = Key.Joystick1_B;
+    [SerializeField] private Key breakingWaveButton = Key.Joystick1_X;
+    [SerializeField] private Key freezeButton = Key.Joystick1_Y;
+    [SerializeField] private UnityEvent onJumpButtonPressed = null;
+    [SerializeField] private UnityEvent onJumpButtonReleased = null;
+    [SerializeField] private UnityEvent onShrinkButtonPressed = null;
+    [SerializeField] private UnityEvent onShrinkButtonReleased = null;
+    [SerializeField] private UnityEvent onBreakingWaveButtonPressed = null;
+    [SerializeField] private UnityEvent onBreakingWaveButtonReleased = null;
+    [SerializeField] private UnityEvent onFreezeButtonPressed = null;
+    [SerializeField] private UnityEvent onFreezeButtonReleased = null;
 
 
-	#region Test Change Input Phil
 
-	JumpController jumpController;
-	ShrinkController shrinkController;
-	BreakingWaveController breakingWaveController;
-	FreezeController freezeController;
+    private void Update()
+    {
+        if(Input.GetKeyDown(GetKeyCode(jumpButton)))
+        {
+            onJumpButtonPressed.Invoke();
+        }
 
-	private void Start()
-	{
-		jumpController = gameObject.GetComponent<JumpController>();
-		shrinkController = gameObject.GetComponent<ShrinkController>();
-		breakingWaveController = gameObject.GetComponent<BreakingWaveController>();
-		freezeController = gameObject.GetComponent<FreezeController>();
-	}
+        if(Input.GetKeyUp(GetKeyCode(jumpButton)))
+        {
+            onJumpButtonReleased.Invoke();
+        }
 
-	private void Update()
-	{
-		if (Input.GetKeyDown(GetKeyCode(jumpKey)))
-		{
-			jumpController.Jump();
-		}
-		if (Input.GetKeyDown(GetKeyCode(punchKey)))
-		{
-			breakingWaveController.LaunchBreakingWave();
-		}
-		if (Input.GetKeyDown(GetKeyCode(slideKey)))
-		{
-			shrinkController.Shrink();
-		}
-		if (Input.GetKeyDown(GetKeyCode(stopTimeKey)))
-		{
-			freezeController.Freeze(false);
-		}
-		if (Input.GetKeyUp(GetKeyCode(stopTimeKey)))
-		{
-			freezeController.Freeze(true);
-		}
-	}
+        if(Input.GetKeyDown(GetKeyCode(shrinkButton)))
+        {
+            onShrinkButtonPressed.Invoke();
+        }
 
-	#endregion
+        if(Input.GetKeyUp(GetKeyCode(shrinkButton)))
+        {
+            onShrinkButtonReleased.Invoke();
+        }
 
+        if(Input.GetKeyDown(GetKeyCode(breakingWaveButton)))
+        {
+            onBreakingWaveButtonPressed.Invoke();
+        }
 
+        if(Input.GetKeyUp(GetKeyCode(breakingWaveButton)))
+        {
+            onBreakingWaveButtonReleased.Invoke();
+        }
+
+        if(Input.GetKeyDown(GetKeyCode(freezeButton)))
+        {
+            onFreezeButtonPressed.Invoke();
+        }
+
+        if(Input.GetKeyUp(GetKeyCode(freezeButton)))
+        {
+            onFreezeButtonReleased.Invoke();
+        }
+    }
 
 	public static KeyCode GetKeyCode(Key key)
     {
