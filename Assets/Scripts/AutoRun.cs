@@ -7,6 +7,16 @@ using RasPacJam.Audio;
 
 public class AutoRun : MonoBehaviour
 {
+    public bool IsEnabled
+    {
+        get => isEnabled;
+        set
+        {
+            isEnabled = value;
+            model.CanRotate = value;
+        }
+    }
+
     [SerializeField] private float speed = 10f;
     [SerializeField] private float deathDelay = 1f;
     [SerializeField] private float revivingDelay = 0.3f;
@@ -20,8 +30,7 @@ public class AutoRun : MonoBehaviour
     private Rigidbody rb;
     private Sequence deathSequence;
     private bool isStopped;
-
-
+    private bool isEnabled;
 
     public void SetStopped(bool isStopped)
     {
@@ -95,6 +104,7 @@ public class AutoRun : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         deathSequence = null;
         isStopped = false;
+        isEnabled = true;
     }
 
     private void Update()
