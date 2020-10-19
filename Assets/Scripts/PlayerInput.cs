@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private Key jumpButton = Key.Joystick1_A;
-    [SerializeField] private Key shrinkButton = Key.Joystick1_B;
-    [SerializeField] private Key breakingWaveButton = Key.Joystick1_X;
-    [SerializeField] private Key freezeButton = Key.Joystick1_Y;
+    [SerializeField] public Key jumpButton = Key.Joystick1_A;
+    [SerializeField] public Key shrinkButton = Key.Joystick1_B;
+    [SerializeField] public Key breakingWaveButton = Key.Joystick1_X;
+    [SerializeField] public Key freezeButton = Key.Joystick1_Y;
     [SerializeField] private UnityEvent onJumpButtonPressed = null;
     [SerializeField] private UnityEvent onJumpButtonReleased = null;
     [SerializeField] private UnityEvent onShrinkButtonPressed = null;
@@ -18,9 +18,16 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private UnityEvent onFreezeButtonPressed = null;
     [SerializeField] private UnityEvent onFreezeButtonReleased = null;
 
-
-
-    private void Update()
+	InputModeSelection inputModeSelection;
+	private void Start()
+	{
+		inputModeSelection = FindObjectOfType<InputModeSelection>();
+		jumpButton = inputModeSelection.key1;
+		shrinkButton = inputModeSelection.key2;
+		breakingWaveButton = inputModeSelection.key3;
+		freezeButton = inputModeSelection.key4;
+	}
+	private void Update()
     {
         if(Input.GetKeyDown(GetKeyCode(jumpButton)))
         {
