@@ -8,10 +8,9 @@ public class DeathZoneChecker : MonoBehaviour
     [SerializeField] private UnityEvent onDeathZoneEntered = null;
 
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 11)
+        if(other.GetComponent<Rotator>()!=null)
         {
             onDeathZoneEntered.Invoke();
         }
