@@ -11,6 +11,7 @@ public class ShrinkController : MonoBehaviour
     [SerializeField] private float shrinkedSizeFactor = 0.5f;
     [SerializeField] private RoofChecker roofChecker = null;
     private bool isShrinked;
+    private bool isShrinkTimerFinished;
     private bool canShrink;
 
 
@@ -35,6 +36,10 @@ public class ShrinkController : MonoBehaviour
         {
             return;
         }
+        if(!isShrinkTimerFinished)
+        {
+            return;
+        }
 
         transform.localScale /= shrinkedSizeFactor;
         AudioManager.Instance.Play("growing");
@@ -47,6 +52,7 @@ public class ShrinkController : MonoBehaviour
     private void Awake()
     {
         isShrinked = false;
+        isShrinkTimerFinished = false;
         canShrink = true;
     }
 
@@ -57,6 +63,7 @@ public class ShrinkController : MonoBehaviour
 
     private IEnumerator StartShrinking()
     {
+        isShrinkTimerFinished = false;
         AudioManager.Instance.Play("shrinking");
         roofChecker.gameObject.SetActive(true);
         isShrinked = true;
@@ -68,6 +75,8 @@ public class ShrinkController : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
+        isShrinkTimerFinished = true;
 
         if(!roofChecker.IsRoofed)
         {
