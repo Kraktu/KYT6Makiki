@@ -12,8 +12,50 @@ public class Player : MonoBehaviour
     public Key stopTimeKey = Key.Joystick1_Y;
 
 
+	#region Test Change Input Phil
 
-    public static KeyCode GetKeyCode(Key key)
+	JumpController jumpController;
+	ShrinkController shrinkController;
+	BreakingWaveController breakingWaveController;
+	FreezeController freezeController;
+
+	private void Start()
+	{
+		jumpController = gameObject.GetComponent<JumpController>();
+		shrinkController = gameObject.GetComponent<ShrinkController>();
+		breakingWaveController = gameObject.GetComponent<BreakingWaveController>();
+		freezeController = gameObject.GetComponent<FreezeController>();
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(GetKeyCode(jumpKey)))
+		{
+			jumpController.Jump();
+		}
+		if (Input.GetKeyDown(GetKeyCode(punchKey)))
+		{
+			breakingWaveController.LaunchBreakingWave();
+		}
+		if (Input.GetKeyDown(GetKeyCode(slideKey)))
+		{
+			shrinkController.Shrink();
+		}
+		if (Input.GetKeyDown(GetKeyCode(stopTimeKey)))
+		{
+			freezeController.Freeze(false);
+		}
+		if (Input.GetKeyUp(GetKeyCode(stopTimeKey)))
+		{
+			freezeController.Freeze(true);
+		}
+	}
+
+	#endregion
+
+
+
+	public static KeyCode GetKeyCode(Key key)
     {
         switch(key)
         {
