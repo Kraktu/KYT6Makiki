@@ -15,6 +15,7 @@ public class FreezeController : MonoBehaviour
     private bool canFreeze;
 
 
+
 	#region bidouillage Phil ancien système
 	public void Freeze(bool unFreezing)
 	{
