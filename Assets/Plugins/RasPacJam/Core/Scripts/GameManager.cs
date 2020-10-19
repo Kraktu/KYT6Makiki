@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
         sceneLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void EndGame()
+    {
+        uiManager.OpenGameOverWindow(score);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -45,11 +50,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
-    }
-
-    private void EndGame()
-    {
-        uiManager.OpenGameOverWindow(score);
     }
 
     private void InitializeGame()
