@@ -23,56 +23,56 @@ public class LettersSwitch : MonoBehaviour
 
 
 
-    public void SwitchOnPLetter(InputAction.CallbackContext action)
+    public void SwitchOnPLetter(bool isOn)
     {
-        if(action.started && canSwitch)
+        if(isOn && canSwitch)
         {
             pLetter.material = emissiveMaterial;
             isPLetterOn = true;
         }
-        else if(action.canceled)
+        else if(!isOn)
         {
             pLetter.material = defaultMaterial;
             isPLetterOn = false;
         }
     }
 
-    public void SwitchOnLLetter(InputAction.CallbackContext action)
+    public void SwitchOnLLetter(bool isOn)
     {
-        if(action.started && canSwitch)
+        if(isOn && canSwitch)
         {
             lLetter.material = emissiveMaterial;
             isLLetterOn = true;
         }
-        else if(action.canceled)
+        else if(!isOn)
         {
             lLetter.material = defaultMaterial;
             isLLetterOn = false;
         }
     }
 
-    public void SwitchOnALetter(InputAction.CallbackContext action)
+    public void SwitchOnALetter(bool isOn)
     {
-        if(action.started && canSwitch)
+        if(isOn && canSwitch)
         {
             aLetter.material = emissiveMaterial;
             isALetterOn = true;
         }
-        else if(action.canceled)
+        else if(!isOn)
         {
             aLetter.material = defaultMaterial;
             isALetterOn = false;
         }
     }
 
-    public void SwitchOnYLetter(InputAction.CallbackContext action)
+    public void SwitchOnYLetter(bool isOn)
     {
-        if(action.started)
+        if(isOn)
         {
             yLetter.material = emissiveMaterial;
             isYLetterOn = true;
         }
-        else if(action.canceled)
+        else if(!isOn)
         {
             yLetter.material = defaultMaterial;
             isYLetterOn = false;

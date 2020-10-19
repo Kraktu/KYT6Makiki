@@ -47,7 +47,16 @@ public class BreakingWaveLauncher : MonoBehaviour
         {
             AudioManager.Instance.Play("obstacleDestruction");
             onObstacleBroken.Invoke(other);
-            other.gameObject.SetActive(false);
+			BaloonBehaviour baloonBehaviour = other.GetComponent<BaloonBehaviour>();
+			if (baloonBehaviour != null)
+			{
+				baloonBehaviour.Despawn();
+			}
+			else
+			{
+				other.gameObject.SetActive(false);
+			}
+            
         }
     }
 
