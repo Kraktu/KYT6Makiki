@@ -1710,7 +1710,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 895983290}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358497464}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6884addb98631643a21625dc348b2c2, type: 3}
@@ -1722,7 +1722,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 895983290}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358497464}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c493df5f2e191574bb36378a11acaba3, type: 3}
@@ -1740,7 +1740,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1333970647}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716757569}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bec821255eaa56547a1db7df295f6bce, type: 3}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1333970647}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716757569}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c493df5f2e191574bb36378a11acaba3, type: 3}
@@ -1833,64 +1833,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e10fd871d097e48b8cf052ebd8ed52, type: 3}
---- !u!1 &716757569 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1333970647}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &716757572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716757569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 2
-  onButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 643624579}
-        m_MethodName: LaunchBreakingWave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnALetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onButtonReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnALetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &720490334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3484,64 +3426,6 @@ PrefabInstance:
     - {fileID: 680653883234739466, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
     - {fileID: 964010365226959435, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
---- !u!1 &1358497464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
-    type: 3}
-  m_PrefabInstance: {fileID: 895983290}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1358497467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358497464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 0
-  onButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 483973589}
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnPLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onButtonReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnPLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1384209800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,7 +3814,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 434310945}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776178903}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9c71d50a7721c6419d3ec9fa627e1aa, type: 3}
@@ -3942,7 +3826,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 434310945}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776178903}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c493df5f2e191574bb36378a11acaba3, type: 3}
@@ -4041,7 +3925,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2146619221}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043792325}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caafc6a3b71561f42bf027588788d435, type: 3}
@@ -4053,70 +3937,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2146619221}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043792325}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c493df5f2e191574bb36378a11acaba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1776178903 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
-    type: 3}
-  m_PrefabInstance: {fileID: 434310945}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1776178906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776178903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 1
-  onButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1444160814}
-        m_MethodName: Shrink
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnLLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onButtonReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnLLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1797881355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4779,75 +4605,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7800fedba62bb84abf0ed7312d04af3, type: 3}
---- !u!1 &2043792325 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1129487232377235297, guid: 12d4f4467b8635b418acce9713e6a03a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2146619221}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2043792328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043792325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 3
-  onButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1755280895}
-        m_MethodName: Freeze
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnYLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onButtonReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1755280895}
-        m_MethodName: Freeze
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2001521746}
-        m_MethodName: SwitchOnYLetter
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &2050008947
 PrefabInstance:
   m_ObjectHideFlags: 0
