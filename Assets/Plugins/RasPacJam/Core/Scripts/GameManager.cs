@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         Time.timeScale = 1;
-        sceneLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        sceneLoader.LoadLevel(0);
     }
 
     public void EndGame()
