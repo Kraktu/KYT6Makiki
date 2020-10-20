@@ -85,6 +85,10 @@ public class PlayerInput : MonoBehaviour
                 return KeyCode.E;
             case Key.R :
                 return KeyCode.R;
+            case Key.Q :
+                return KeyCode.Q;
+            case Key.W :
+                return KeyCode.W;
             case Key.Joystick1_A :
                 return KeyCode.Joystick1Button0;
             case Key.Joystick1_B :
@@ -128,6 +132,8 @@ public class PlayerInput : MonoBehaviour
         Z,
         E,
         R,
+        Q,
+        W,
         Joystick1_A,
         Joystick1_B,
         Joystick1_X,

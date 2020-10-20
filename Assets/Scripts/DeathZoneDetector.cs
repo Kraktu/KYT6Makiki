@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DeathZoneChecker : MonoBehaviour
+public class DeathZoneDetector : MonoBehaviour
 {
     [SerializeField] private UnityEvent onDeathZoneEntered = null;
 
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Rotator>()!=null)
+        if(other.gameObject.layer == 11)
         {
             onDeathZoneEntered.Invoke();
         }

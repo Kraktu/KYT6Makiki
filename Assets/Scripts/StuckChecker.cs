@@ -14,7 +14,6 @@ public class StuckChecker : MonoBehaviour
 
     public void Reset()
     {
-        gameObject.SetActive(true);
         currentCollisions.Clear();
     }
 

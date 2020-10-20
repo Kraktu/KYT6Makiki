@@ -22,6 +22,7 @@ public class AutoRun : MonoBehaviour
     [SerializeField] private float revivingDelay = 0.3f;
     [SerializeField] private LightsManager lightsManager = null;
     [SerializeField] private StuckChecker stuckChecker = null;
+    [SerializeField] private DeathZoneDetector deathZoneDetector = null;
     [SerializeField] private Rotator model = null;
     [SerializeField] private ParticleSystem cloudParticlesPrefab = null;
     [SerializeField] private ParticleSystem burstParticlesPrefab = null;
@@ -90,10 +91,11 @@ public class AutoRun : MonoBehaviour
 
     public void Die()
     {
-        PlayDeathAnimation();
         lightsManager.SwitchLights(DOTween.Sequence(), true, revivingDelay);
+        AudioManager.Instance.GetMusic(MusicName.Main).volume = 0f;
+        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = 0.5f;
         AudioManager.Instance.Play("death");
-        cloudParticles = Instantiate(cloudParticlesPrefab, particlesLocation);
+        PlayDeathAnimation();
         onDead.Invoke();
     }
 
@@ -113,6 +115,11 @@ public class AutoRun : MonoBehaviour
         isEnabled = true;
     }
 
+    private void Start()
+    {
+        InputModeSelection.Instance.IsActive = false;
+    }
+
     private void Update()
     {
         if(isStopped)
@@ -125,41 +132,47 @@ public class AutoRun : MonoBehaviour
 
     private void PlayDeathAnimation()
     {
+        if(deathSequence != null && deathSequence.IsActive())
+        {
+            deathSequence.Kill();
+        }
+        SetStopped(true);
         foreach(Collider collider in GetComponentsInChildren<Collider>())
         {
             collider.enabled = false;
         }
-        SetStopped(true);
         rb.isKinematic = true;
         stuckChecker.gameObject.SetActive(false);
-
+        deathZoneDetector.gameObject.SetActive(false);
+        cloudParticles = Instantiate(cloudParticlesPrefab, particlesLocation);
         Sequence deathAnimSequence = DOTween.Sequence();
         deathAnimSequence
-                .Append(transform.DOLocalMoveZ(-8f, 2f)
+                .Append(transform.DOLocalMoveZ(-10f, 2f)
                         .SetEase(Ease.InOutBack))
-                .Append(transform.DOMove(startPosition + new Vector3(0f,0f,-8f), 2f)
+                .Append(transform.DOMove(startPosition + new Vector3(0f, 0f, -10f), 2f)
                         .SetEase(Ease.InOutBack))
                 .Append(transform.DOMove(startPosition, 2f)
                         .SetEase(Ease.InOutBack))
-                .OnComplete(ResetAutoRun);
+                .OnComplete(FinalizeAnimation);
     }
 
-    private void ResetAutoRun()
+    private void FinalizeAnimation()
     {
+        Sequence resetSequence = DOTween.Sequence();
+        resetSequence
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0.5f, 0.3f))
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0f, 0.3f));
+        Destroy(cloudParticles.gameObject);
+        Instantiate(burstParticlesPrefab, particlesLocation);
+        onReset.Invoke();
+        deathZoneDetector.gameObject.SetActive(true);
+        stuckChecker.gameObject.SetActive(true);
         stuckChecker.Reset();
+        rb.isKinematic = false;
         foreach(Collider collider in GetComponentsInChildren<Collider>())
         {
             collider.enabled = true;
         }
         SetStopped(false);
-        rb.isKinematic = false;
-        Destroy(cloudParticles.gameObject);
-        Instantiate(burstParticlesPrefab, particlesLocation);
-        onReset.Invoke();
-
-        Sequence resetSequence = DOTween.Sequence();
-        resetSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0.5f, 0.3f))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0f, 0.3f));
     }
 }

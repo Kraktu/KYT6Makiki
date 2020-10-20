@@ -11,20 +11,24 @@ public class BreakingWaveLauncher : MonoBehaviour
 
     [SerializeField] private float breakingWaveDuration = 1f;
     [SerializeField] private float breakingWaveRadius = 10f;
+    [SerializeField] private ParticleSystem wavePrefab = null;
     private OnObstacleBrokenEvent onObstacleBroken;
     private SphereCollider waveField;
-    private Light waveLight;
+    private ParticleSystem wave;
+    private float initialRadius;
 
 
 
     public void Launch()
     {
-        Sequence seq = DOTween.Sequence();
-        seq
-                .Insert(0f, DOTween.To(() => waveField.radius, value => waveField.radius = value, breakingWaveRadius, breakingWaveDuration))
-                .Insert(0f, DOTween.To(() => waveLight.range, value => waveLight.range = value, breakingWaveRadius, breakingWaveDuration)
-                        .OnComplete(ResetWave)
-                );
+        wave = Instantiate(wavePrefab, transform);
+        var main = wave.main;
+        wave.Stop();
+        main.startLifetime = breakingWaveDuration;
+        main.startSpeed = (breakingWaveRadius - initialRadius) / breakingWaveDuration;
+        wave.Play();
+        DOTween.To(() => waveField.radius, value => waveField.radius = value,
+                breakingWaveRadius, breakingWaveDuration).SetEase(Ease.Linear).OnComplete(ResetWave);
     }
 
 
@@ -32,39 +36,37 @@ public class BreakingWaveLauncher : MonoBehaviour
     private void Awake()
     {
         waveField = GetComponent<SphereCollider>();
-        waveLight = GetComponent<Light>();
         onObstacleBroken = new OnObstacleBrokenEvent();
     }
 
     private void Start()
     {
-        ResetWave();
+        initialRadius = waveField.radius;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 9)
         {
-            AudioManager.Instance.Play("obstacleDestruction");
             onObstacleBroken.Invoke(other);
-			BaloonBehaviour baloonBehaviour = other.GetComponent<BaloonBehaviour>();
-			if (baloonBehaviour != null)
-			{
-				baloonBehaviour.Despawn();
-			}
-			else
-			{
-				other.gameObject.SetActive(false);
-			}
-            
+            if(other.TryGetComponent<AnimatorBreakable>(out AnimatorBreakable obstacle))
+            {
+                obstacle.StartBreaking();
+            }
+            else if(other.TryGetComponent<BaloonBehaviour>(out BaloonBehaviour balloon))
+            {
+                balloon.Despawn();
+            }
         }
     }
 
     private void ResetWave()
     {
-        waveField.radius = 0f;
-        waveLight.range = 0f;
+        waveField.radius = initialRadius;
         gameObject.SetActive(false);
+        Destroy(wave.gameObject);
+
     }
 
     public class OnObstacleBrokenEvent : UnityEvent<Collider> { }

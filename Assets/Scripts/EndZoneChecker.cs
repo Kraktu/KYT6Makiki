@@ -10,7 +10,7 @@ public class EndZoneChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Rotator>()!=null)
+        if(other.gameObject.layer == 12)
         {
             onEndZoneEntered.Invoke();
         }

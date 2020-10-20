@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007043191240510877}
-  - component: {fileID: 2124677560289342507}
   m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
@@ -32,25 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.379002}
---- !u!95 &2124677560289342507
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6347433727028729639}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6146fbe57e8ac1c4eb109854ff8ee9aa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5383500901842368615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81,7 +61,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 78910f4e8b3c0a24a9b2ae848aa6335f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78910f4e8b3c0a24a9b2ae848aa6335f,
         type: 3}
@@ -91,7 +71,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 78910f4e8b3c0a24a9b2ae848aa6335f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78910f4e8b3c0a24a9b2ae848aa6335f,
         type: 3}

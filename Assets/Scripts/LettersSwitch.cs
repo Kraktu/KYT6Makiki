@@ -106,5 +106,6 @@ public class LettersSwitch : MonoBehaviour
     private void Start()
     {
         defaultMaterial = pLetter.material;
+        InputModeSelection.Instance.IsActive = true;
     }
 }

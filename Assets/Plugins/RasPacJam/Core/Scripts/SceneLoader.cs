@@ -75,7 +75,12 @@ public class SceneLoader : MonoBehaviour
                 DOTween
                         .To(() => loadingBar.value, value => loadingBar.value = value, 1, loadingTime)
                         .SetEase(Ease.OutQuint)
-                        .OnComplete(() => operation.allowSceneActivation = true);
+                        .OnComplete(() =>
+                                {
+                                    operation.allowSceneActivation = true;
+                                    DOTween.KillAll();
+                                }
+                        );
             }
         }
     }
