@@ -6149,11 +6149,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829245839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c42a133996a44acde70ac4742743, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ea6bd99500241e4da62d3b1259b062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStartAnimation: 1
   addedHeight: {x: 0, y: 100, z: 0}
   fallTime: 1
+  rotatingSpeed: 0.05
+  rotation: {x: 0, y: 0, z: 2}
+  explosionDelay: 0.3
+  explosionParticlesPrefab: {fileID: 2875529666619075423, guid: ee120a4403d9bc14eb33b399d94d57db,
+    type: 3}
 --- !u!1 &1847580090
 GameObject:
   m_ObjectHideFlags: 0
