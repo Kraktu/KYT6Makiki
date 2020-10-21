@@ -21,9 +21,11 @@ public class AutoRun : MonoBehaviour
     [SerializeField] private float deathDelay = 1f;
     [SerializeField] private float revivingDelay = 0.3f;
     [SerializeField] private LightsManager lightsManager = null;
-    [SerializeField] private StuckChecker stuckChecker = null;
+    [SerializeField] private GroundChecker groundChecker = null;
     [SerializeField] private RoofChecker roofChecker = null;
-    [SerializeField] private DeathZoneDetector deathZoneDetector = null;
+    [SerializeField] private StuckChecker stuckChecker = null;
+    [SerializeField] private CollectiblesDetector collectiblesDetector = null;
+    [SerializeField] private DeathZoneDetector zonesDetector = null;
     [SerializeField] private Rotator model = null;
     [SerializeField] private ParticleSystem cloudParticlesPrefab = null;
     [SerializeField] private ParticleSystem burstParticlesPrefab = null;
@@ -152,13 +154,13 @@ public class AutoRun : MonoBehaviour
             deathSequence.Kill();
         }
         SetStopped(true);
-        foreach(Collider collider in GetComponentsInChildren<Collider>())
-        {
-            collider.enabled = false;
-        }
+        model.GetComponent<Collider>().enabled = false;
         rb.isKinematic = true;
+        groundChecker.gameObject.SetActive(false);
+        roofChecker.gameObject.SetActive(false);
         stuckChecker.gameObject.SetActive(false);
-        deathZoneDetector.gameObject.SetActive(false);
+        collectiblesDetector.gameObject.SetActive(false);
+        zonesDetector.gameObject.SetActive(false);
         cloudParticles = Instantiate(cloudParticlesPrefab, particlesLocation);
         Sequence deathAnimSequence = DOTween.Sequence();
         deathAnimSequence
@@ -180,15 +182,16 @@ public class AutoRun : MonoBehaviour
         Destroy(cloudParticles.gameObject);
         Instantiate(burstParticlesPrefab, particlesLocation);
         onReset.Invoke();
-        deathZoneDetector.gameObject.SetActive(true);
+        groundChecker.gameObject.SetActive(true);
+        roofChecker.gameObject.SetActive(true);
         stuckChecker.gameObject.SetActive(true);
+        collectiblesDetector.gameObject.SetActive(true);
+        zonesDetector.gameObject.SetActive(true);
         stuckChecker.Reset();
         roofChecker.Reset();
         rb.isKinematic = false;
-        foreach(Collider collider in GetComponentsInChildren<Collider>())
-        {
-            collider.enabled = true;
-        }
+        model.GetComponent<Collider>().enabled = true;
         SetStopped(false);
+        isDying = false;
     }
 }
