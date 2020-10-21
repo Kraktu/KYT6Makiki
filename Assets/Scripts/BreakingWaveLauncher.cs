@@ -54,10 +54,6 @@ public class BreakingWaveLauncher : MonoBehaviour
             {
                 obstacle.StartBreaking();
             }
-            else if(other.TryGetComponent<BaloonBehaviour>(out BaloonBehaviour balloon))
-            {
-                balloon.Despawn();
-            }
         }
     }
 
