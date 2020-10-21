@@ -29,7 +29,7 @@ public class RoofChecker : MonoBehaviour
 
     private void Start()
     {
-        breakingWaveLauncher.OnObstacleBroken.AddListener(CheckBrokenObstacle);
+        breakingWaveLauncher.OnObstacleBroken?.AddListener(CheckBrokenObstacle);
     }
 
     private void OnTriggerEnter(Collider other)
