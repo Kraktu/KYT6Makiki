@@ -1169,6 +1169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea6bd99500241e4da62d3b1259b062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStartAnimation: 0
+  addedHeight: {x: 0, y: 100, z: 0}
+  fallTime: 1
   rotatingSpeed: 0.05
   rotation: {x: 0, y: 0, z: 2}
   explosionDelay: 0.3
@@ -1545,6 +1548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea6bd99500241e4da62d3b1259b062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStartAnimation: 0
+  addedHeight: {x: 0, y: 100, z: 0}
+  fallTime: 1
   rotatingSpeed: 0.05
   rotation: {x: 0, y: 0, z: 2}
   explosionDelay: 0.3
@@ -4439,6 +4445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea6bd99500241e4da62d3b1259b062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStartAnimation: 0
+  addedHeight: {x: 0, y: 100, z: 0}
+  fallTime: 1
   rotatingSpeed: 0.05
   rotation: {x: 0, y: 0, z: 2}
   explosionDelay: 0.3
@@ -6407,6 +6416,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 741237462, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 741237464, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: m_Size.x
+      value: 6.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 741237464, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.26
+      objectReference: {fileID: 0}
     - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
       propertyPath: onBreakingWaveButtonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -6682,11 +6703,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1877736347}
     m_Modifications:
-    - target: {fileID: 2729146632820919987, guid: 5d5854520a25fa045baa81ef8bb8d6a6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6106910960217623963, guid: 5d5854520a25fa045baa81ef8bb8d6a6,
         type: 3}
       propertyPath: m_LocalPosition.x
