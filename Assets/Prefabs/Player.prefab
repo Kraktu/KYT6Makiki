@@ -1173,6 +1173,7 @@ MonoBehaviour:
   breakingWaveRadius: 3
   wavePrefab: {fileID: 2875529666619075423, guid: 347794f88d12c284c92fd93b6a3b0806,
     type: 3}
+  playerCollider: {fileID: 8028820361584845121}
 --- !u!1001 &4618039834175188596
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using DG.Tweening;
 public class AnimatorCollectible : MonoBehaviour
 {
     [SerializeField] private float floatingIntensity = 0.5f;
+    [SerializeField] private float floatingDuration = 0.5f;
     [SerializeField] private ParticleSystem explosionParticlesPrefab = null;
     Tween floatingTween;
 
@@ -23,6 +24,6 @@ public class AnimatorCollectible : MonoBehaviour
 
     private void Start()
     {
-        floatingTween = transform.DOLocalMoveY(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        floatingTween = transform.DOLocalMoveY(floatingIntensity, floatingDuration).SetLoops(-1, LoopType.Yoyo);
     }
 }

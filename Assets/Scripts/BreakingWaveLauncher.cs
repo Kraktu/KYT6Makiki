@@ -12,6 +12,7 @@ public class BreakingWaveLauncher : MonoBehaviour
     [SerializeField] private float breakingWaveDuration = 1f;
     [SerializeField] private float breakingWaveRadius = 10f;
     [SerializeField] private ParticleSystem wavePrefab = null;
+    [SerializeField] private SphereCollider playerCollider = null;
     private OnObstacleBrokenEvent onObstacleBroken;
     private SphereCollider waveField;
     private ParticleSystem wave;
@@ -22,11 +23,11 @@ public class BreakingWaveLauncher : MonoBehaviour
     public void Launch()
     {
         wave = Instantiate(wavePrefab, transform);
+        var shape = wave.shape;
+        shape.radius = transform.parent.localScale.z * playerCollider.transform.localScale.z * playerCollider.radius;
         var main = wave.main;
-        wave.Stop();
         main.startLifetime = breakingWaveDuration;
         main.startSpeed = (breakingWaveRadius - initialRadius) / breakingWaveDuration;
-        wave.Play();
         DOTween.To(() => waveField.radius, value => waveField.radius = value,
                 breakingWaveRadius, breakingWaveDuration).SetEase(Ease.Linear).OnComplete(ResetWave);
     }
