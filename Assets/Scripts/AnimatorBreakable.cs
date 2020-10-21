@@ -16,6 +16,7 @@ public class AnimatorBreakable : MonoBehaviour
 
     public void StartBreaking()
     {
+        GetComponent<Collider>().enabled = false;
         AudioManager.Instance.Play("obstacleDestruction");
         rotationTween.Kill();
         Vector3 extents = GetComponent<Renderer>().bounds.extents;
@@ -26,6 +27,7 @@ public class AnimatorBreakable : MonoBehaviour
                         {
                             transform.localScale = Vector3.one;
                             transform.localPosition = Vector3.zero;
+                            GetComponent<Collider>().enabled = true;
                             Explode();
                         }
                 );
