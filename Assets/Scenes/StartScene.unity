@@ -1843,7 +1843,7 @@ PrefabInstance:
     - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
@@ -2055,26 +2055,6 @@ PrefabInstance:
       propertyPath: musicReverb
       value: 
       objectReference: {fileID: 477218919}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].name
-      value: freezing
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3212f05797917f64c9f1afec703a90e5, type: 3}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].pitch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4969980041752704249, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
       propertyPath: m_LocalPosition.x
