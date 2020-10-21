@@ -9,8 +9,10 @@ public class FreezeController : MonoBehaviour
 {
     public bool IsFreezing { get => isFreezing; set => isFreezing = value; }
     public bool CanFreeze { get => canFreeze; set => canFreeze = value; }
+    [SerializeField] private StuckChecker stuckChecker = null;
     [SerializeField] private UnityEvent onFreezed = null;
     [SerializeField] private UnityEvent onUnfreezed = null;
+    [SerializeField] private UnityEvent onUnfreezedWhenStuck = null;
     private bool isFreezing;
     private bool canFreeze;
 
@@ -33,7 +35,14 @@ public class FreezeController : MonoBehaviour
        {
            isFreezing = false;
            // AudioManager.Instance.Play("unfreezing");
-           onUnfreezed.Invoke();
+           if(stuckChecker.IsStuck)
+           {
+               onUnfreezedWhenStuck.Invoke();
+           }
+           else
+           {
+                onUnfreezed.Invoke();
+           }
        }
     }
 
@@ -59,7 +68,14 @@ public class FreezeController : MonoBehaviour
 
         isFreezing = false;
         // AudioManager.Instance.Play("unfreezing");
-        onUnfreezed.Invoke();
+        if(stuckChecker.IsStuck)
+        {
+            onUnfreezedWhenStuck.Invoke();
+        }
+        else
+        {
+            onUnfreezed.Invoke();
+        }
     }
 
 

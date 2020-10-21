@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RasPacJam.Audio;
 
 public class BreakingWaveController : MonoBehaviour
 {
@@ -27,7 +26,6 @@ public class BreakingWaveController : MonoBehaviour
 
         breakingWaveLauncher.gameObject.SetActive(true);
         breakingWaveLauncher.Launch();
-        // AudioManager.Instance.Play("breakingWaveLaunch");
     }
 
     public void MemorizeBrokenObstacle(Collider brokenObstacle)

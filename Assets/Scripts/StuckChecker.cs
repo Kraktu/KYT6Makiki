@@ -5,15 +5,19 @@ using UnityEngine.Events;
 
 public class StuckChecker : MonoBehaviour
 {
+    public bool IsStuck => isStuck;
+
     [SerializeField] private BreakingWaveLauncher breakingWaveLauncher = null;
     [SerializeField] private UnityEvent onStuck = null;
     [SerializeField] private UnityEvent onEscaped = null;
     private List<Collider> currentCollisions;
+    private bool isStuck;
 
 
 
     public void Reset()
     {
+        isStuck = false;
         currentCollisions.Clear();
     }
 
@@ -22,6 +26,7 @@ public class StuckChecker : MonoBehaviour
     private void Awake()
     {
         currentCollisions = new List<Collider>();
+        isStuck = false;
     }
 
     private void Start()
@@ -36,6 +41,7 @@ public class StuckChecker : MonoBehaviour
             currentCollisions.Add(other);
             if(currentCollisions.Count == 1)
             {
+                isStuck = true;
                 onStuck.Invoke();
             }
         }
@@ -54,6 +60,7 @@ public class StuckChecker : MonoBehaviour
         currentCollisions.Remove(other);
         if(currentCollisions.Count == 0)
         {
+            isStuck = false;
             onEscaped.Invoke();
         }
     }

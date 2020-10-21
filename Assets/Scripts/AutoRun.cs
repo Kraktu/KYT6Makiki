@@ -36,6 +36,7 @@ public class AutoRun : MonoBehaviour
     private Rigidbody rb;
     private ParticleSystem cloudParticles;
     private Sequence deathSequence;
+    private bool isDying;
     private bool isStopped;
     private bool isEnabled;
 
@@ -57,6 +58,12 @@ public class AutoRun : MonoBehaviour
 
     public void StartDying()
     {
+        if(isDying)
+        {
+            return;
+        }
+
+        isDying = true;
         if(deathSequence != null && deathSequence.IsActive())
         {
             deathSequence.Kill();
@@ -75,6 +82,12 @@ public class AutoRun : MonoBehaviour
 
     public void StopDying()
     {
+        if(!isDying)
+        {
+            return;
+        }
+
+        isDying = false;
         if(deathSequence != null && deathSequence.IsActive())
         {
             deathSequence.Kill();
@@ -114,6 +127,7 @@ public class AutoRun : MonoBehaviour
         deathSequence = null;
         isStopped = false;
         isEnabled = true;
+        isDying = false;
     }
 
     private void Start()
