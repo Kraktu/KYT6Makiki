@@ -22,6 +22,7 @@ public class AutoRun : MonoBehaviour
     [SerializeField] private float revivingDelay = 0.3f;
     [SerializeField] private LightsManager lightsManager = null;
     [SerializeField] private StuckChecker stuckChecker = null;
+    [SerializeField] private RoofChecker roofChecker = null;
     [SerializeField] private DeathZoneDetector deathZoneDetector = null;
     [SerializeField] private Rotator model = null;
     [SerializeField] private ParticleSystem cloudParticlesPrefab = null;
@@ -168,6 +169,7 @@ public class AutoRun : MonoBehaviour
         deathZoneDetector.gameObject.SetActive(true);
         stuckChecker.gameObject.SetActive(true);
         stuckChecker.Reset();
+        roofChecker.Reset();
         rb.isKinematic = false;
         foreach(Collider collider in GetComponentsInChildren<Collider>())
         {

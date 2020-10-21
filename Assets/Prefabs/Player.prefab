@@ -434,6 +434,7 @@ MonoBehaviour:
   revivingDelay: 0.3
   lightsManager: {fileID: 0}
   stuckChecker: {fileID: 741237463}
+  roofChecker: {fileID: 3786155393058869655}
   deathZoneDetector: {fileID: 8323479377804849851}
   model: {fileID: 8514334178974049665}
   cloudParticlesPrefab: {fileID: 3481050666444388241, guid: 51e3a40007292c643a5bcf83184babee,
@@ -944,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127b3f63fa95fa14bba205217b7211f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakingWaveLauncher: {fileID: 8411755353845577246}
   onRoofExited:
     m_PersistentCalls:
       m_Calls:
