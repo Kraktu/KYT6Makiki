@@ -88,8 +88,8 @@ MonoBehaviour:
     pitch: 1
   - name: breakingWaveLaunch
     clip: {fileID: 8300000, guid: db27696ab8cc437479aec53021d3d486, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.9
+    pitch: 0.2
   music: {fileID: 2051197580}
   musicReverb: {fileID: 2051197579}
 --- !u!82 &2051197579
