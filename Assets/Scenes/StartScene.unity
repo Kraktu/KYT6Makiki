@@ -1844,7 +1844,7 @@ PrefabInstance:
     - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
@@ -2056,6 +2056,7 @@ PrefabInstance:
       propertyPath: musicReverb
       value: 
       objectReference: {fileID: 477218919}
+<<<<<<< HEAD
     - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
       propertyPath: sounds.Array.data[10].name
@@ -2078,6 +2079,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 062b517... Fix plein de trucs
     - target: {fileID: 4969980041752704249, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
       propertyPath: m_LocalPosition.x
