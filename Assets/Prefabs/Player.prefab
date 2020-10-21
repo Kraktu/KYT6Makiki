@@ -433,11 +433,9 @@ MonoBehaviour:
   deathDelay: 3
   revivingDelay: 0.3
   lightsManager: {fileID: 0}
-  groundChecker: {fileID: 3687695340895496276}
-  roofChecker: {fileID: 3786155393058869655}
   stuckChecker: {fileID: 741237463}
-  collectiblesDetector: {fileID: 688010407931033263}
-  zonesDetector: {fileID: 8323479377804849851}
+  roofChecker: {fileID: 3786155393058869655}
+  deathZoneDetector: {fileID: 8323479377804849851}
   model: {fileID: 8514334178974049665}
   cloudParticlesPrefab: {fileID: 3481050666444388241, guid: 51e3a40007292c643a5bcf83184babee,
     type: 3}
