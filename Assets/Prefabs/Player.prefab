@@ -706,11 +706,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpButton: 0
-  shrinkButton: 1
-  breakingWaveButton: 2
-  freezeButton: 3
-  onJumpButtonPressed:
+  isInitializedByPlayer: 1
+  jumpKey: 350
+  shrinkKey: 352
+  breakingWaveKey: 331
+  freezeKey: 353
+  onJumpKeyPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4930616686393088334}
@@ -724,10 +725,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onJumpButtonReleased:
+  onJumpKeyReleased:
     m_PersistentCalls:
       m_Calls: []
-  onShrinkButtonPressed:
+  onShrinkKeyPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5086307542492547974}
@@ -741,10 +742,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onShrinkButtonReleased:
+  onShrinkKeyReleased:
     m_PersistentCalls:
       m_Calls: []
-  onBreakingWaveButtonPressed:
+  onBreakingWaveKeyPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6694432906390871353}
@@ -758,10 +759,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onBreakingWaveButtonReleased:
+  onBreakingWaveKeyReleased:
     m_PersistentCalls:
       m_Calls: []
-  onFreezeButtonPressed:
+  onFreezeKeyPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 680653883234739466}
@@ -775,7 +776,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onFreezeButtonReleased:
+  onFreezeKeyReleased:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 680653883234739466}

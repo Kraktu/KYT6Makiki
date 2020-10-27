@@ -6230,6 +6230,42 @@ PrefabInstance:
       propertyPath: onBreakingWaveButtonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onJumpKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onJumpKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onShrinkKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onShrinkKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onBreakingWaveKeyPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onBreakingWaveKeyPressed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onBreakingWaveKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: onBreakingWaveKeyReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
+      propertyPath: isInitializedByPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 680653883234739466, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: onFreezed.m_PersistentCalls.m_Calls.Array.data[2].m_Target

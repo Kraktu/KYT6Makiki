@@ -40,6 +40,8 @@ public class AutoRun : MonoBehaviour
     private bool isStopped;
     private bool isEnabled;
 
+
+
     public void SetStopped(bool isStopped)
     {
         this.isStopped = isStopped;
@@ -128,11 +130,6 @@ public class AutoRun : MonoBehaviour
         isStopped = false;
         isEnabled = true;
         isDying = false;
-    }
-
-    private void Start()
-    {
-        InputModeSelection.Instance.IsActive = false;
     }
 
     private void Update()
