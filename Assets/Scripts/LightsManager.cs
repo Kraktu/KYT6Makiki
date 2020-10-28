@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using RasPacJam.Audio;
 
 public class LightsManager : MonoBehaviour
@@ -9,7 +10,12 @@ public class LightsManager : MonoBehaviour
     public List<LightsGroup> Lights => lights;
 
     [SerializeField] private List<LightsGroup> lights = null;
-    [SerializeField] private int starsCountForNextLightingLevel = 3;
+    [SerializeField] private RectTransform uiStarsPanel = null;
+    [SerializeField] private TextMeshProUGUI uiStarsCount = null;
+    [SerializeField] private TextMeshProUGUI uistarsCountForNextLevel = null;
+    [SerializeField] private int starsCountForNextLevel = 3;
+    [SerializeField] private float uiScaleIntensity = 2f;
+    [SerializeField] private float uiScaleDuration = 0.5f;
     private int starsCount;
 
 
@@ -17,18 +23,33 @@ public class LightsManager : MonoBehaviour
     public void PickUpStar()
     {
         starsCount++;
-        if(starsCount % starsCountForNextLightingLevel == 0)
+        int relativeStarsCount = starsCount % starsCountForNextLevel;
+        if(relativeStarsCount == 0)
         {
-            int lightsGroupIndex = (starsCount / starsCountForNextLightingLevel);
-			if (lightsGroupIndex>=lights.Count)
-			{
-				return;
-			}
+            int lightsGroupIndex = (starsCount / starsCountForNextLevel);
+            if (lightsGroupIndex >= lights.Count)
+            {
+                return;
+            }
             foreach(Light light in lights[lightsGroupIndex].List)
             {
                 light.gameObject.SetActive(true);
             }
             AudioManager.Instance.Play("nextLightingLevel");
+            uiStarsCount.text = starsCountForNextLevel.ToString();
+            Vector3 initialScale = uiStarsPanel.localScale;
+            Vector3 finalScale =  initialScale * uiScaleIntensity;
+            uiStarsPanel
+                    .DOScale(finalScale, uiScaleDuration)
+                    .OnComplete(() =>
+                    {
+                        uiStarsPanel.DOScale(initialScale, uiScaleDuration);
+                        uiStarsCount.text = "0";
+                    });
+        }
+        else
+        {
+            uiStarsCount.text = relativeStarsCount.ToString();
         }
         AudioManager.Instance.Play("starPickedUp");
     }
@@ -71,6 +92,9 @@ public class LightsManager : MonoBehaviour
                 lights[i].Intensities.Add(light.intensity);
             }
         }
+
+        uiStarsCount.text = "0";
+        uistarsCountForNextLevel.text = starsCountForNextLevel.ToString();
     }
 
     [System.Serializable]

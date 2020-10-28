@@ -590,6 +590,7 @@ MonoBehaviour:
   groundChecker: {fileID: 3687695340895496276}
   maxJumpHeight: 5
   maxJumpTime: 0.3
+  hasMomentum: 0
 --- !u!114 &5086307542492547974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +711,7 @@ MonoBehaviour:
   isInitializedByPlayer: 1
   jumpKey: 350
   shrinkKey: 352
-  breakingWaveKey: 331
+  breakingWaveKey: 351
   freezeKey: 353
   onJumpKeyPressed:
     m_PersistentCalls:
