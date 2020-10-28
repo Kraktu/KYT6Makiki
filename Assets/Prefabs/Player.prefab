@@ -587,8 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6884addb98631643a21625dc348b2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 13
   groundChecker: {fileID: 3687695340895496276}
+  maxJumpHeight: 5
+  maxJumpTime: 0.3
 --- !u!114 &5086307542492547974
 MonoBehaviour:
   m_ObjectHideFlags: 0
