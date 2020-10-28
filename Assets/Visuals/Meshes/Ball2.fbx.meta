@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61af577e3ad522247bc2733d92440ef8
+guid: 6fae751160ee84f419c0380451d1e122
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -12,27 +12,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: mat_Ball.001
-    second: {fileID: 2100000, guid: 88662d6eaf266f24db8ec010f44aca7f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: mat_BallOutline
     second: {fileID: 2100000, guid: d96187fac72b92541abb372875510b4f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: mat_BallOutline.001
-    second: {fileID: 2100000, guid: d96187fac72b92541abb372875510b4f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: mat_InsideBall
-    second: {fileID: 2100000, guid: 33f9ff5cbbd8f634f821c2f4dc3e3d68, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mat_InsideBall.001
     second: {fileID: 2100000, guid: 33f9ff5cbbd8f634f821c2f4dc3e3d68, type: 2}
   materials:
     materialImportMode: 1
@@ -53,7 +38,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -64,7 +49,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.3
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -99,7 +84,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -111,14 +96,14 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.3
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
