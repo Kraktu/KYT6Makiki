@@ -6,6 +6,8 @@ using RasPacJam.Audio;
 public class JumpController : MonoBehaviour
 {
     public bool CanJump { get => canJump; set => canJump = value; }
+
+    [SerializeField] private ShrinkController shrinkController = null;
     [SerializeField] private GroundChecker groundChecker = null;
     [SerializeField] private float maxJumpHeight = 10f;
     [SerializeField] private float maxJumpTime = 2f;
@@ -65,7 +67,7 @@ public class JumpController : MonoBehaviour
             return;
         }
 
-        rb.velocity = Vector3.up * jumpIntensity;
+        rb.velocity = Vector3.up * jumpIntensity * (shrinkController.IsShrinked ? 0.5f : 1f);
 
         jumpTimeCounter -= Time.deltaTime;
         if(jumpTimeCounter <= 0)

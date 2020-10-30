@@ -7,9 +7,9 @@ using RasPacJam.Audio;
 
 public class LightsManager : MonoBehaviour
 {
-    public List<LightsGroup> Lights => lights;
+    public List<LightsGroup> LightsGroups => lightsGroups;
 
-    [SerializeField] private List<LightsGroup> lights = null;
+    [SerializeField] private List<LightsGroup> lightsGroups = null;
     [SerializeField] private RectTransform uiStarsPanel = null;
     [SerializeField] private TextMeshProUGUI uiStarsCount = null;
     [SerializeField] private TextMeshProUGUI uistarsCountForNextLevel = null;
@@ -27,11 +27,11 @@ public class LightsManager : MonoBehaviour
         if(relativeStarsCount == 0)
         {
             int lightsGroupIndex = (starsCount / starsCountForNextLevel);
-            if (lightsGroupIndex >= lights.Count)
+            if (lightsGroupIndex >= lightsGroups.Count)
             {
                 return;
             }
-            foreach(Light light in lights[lightsGroupIndex].List)
+            foreach(Light light in lightsGroups[lightsGroupIndex].Lights)
             {
                 light.gameObject.SetActive(true);
             }
@@ -56,12 +56,15 @@ public class LightsManager : MonoBehaviour
 
     public void SwitchLights(Sequence sequence, bool isSwitchingOn, float delay)
     {
-        foreach(LightsGroup lightsGroup in lights)
+        foreach(LightsGroup lightsGroup in lightsGroups)
         {
-            for(int i = 0 ; i < lightsGroup.List.Count ; i++)
+            for(int i = 0 ; i < lightsGroup.Lights.Count ; i++)
             {
-                float intensity = isSwitchingOn ? lightsGroup.Intensities[i] : 0f;
-                sequence.Insert(0f, lightsGroup.List[i].DOIntensity(intensity, delay));
+                if(lightsGroup.Lights[i])
+                {
+                    float intensity = isSwitchingOn ? lightsGroup.Intensities[i] : 0f;
+                    sequence.Insert(0f, lightsGroup.Lights[i].DOIntensity(intensity, delay));
+                }
             }
         }
     }
@@ -75,21 +78,34 @@ public class LightsManager : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0 ; i < lights[0].List.Count ; i++)
+        if(lightsGroups.Count == 0)
         {
-            Light light = lights[0].List[i];
-            light.gameObject.SetActive(true);
-            lights[0].Intensities.Add(light.intensity);
+            return;
         }
 
-        for(int i = 1 ; i < lights.Count ; i++)
+        for(int i = 0 ; i < lightsGroups[0].Lights.Count ; i++)
         {
-            List<Light> lightsList = lights[i].List;
-            for(int j = 0 ; j < lightsList.Count ; j++)
+            Light light = lightsGroups[0].Lights[i];
+            lightsGroups[0].Intensities.Add(0f);
+            if(light)
             {
-                Light light = lightsList[j];
-                light.gameObject.SetActive(false);
-                lights[i].Intensities.Add(light.intensity);
+                light.gameObject.SetActive(true);
+                lightsGroups[0].Intensities[i] = light.intensity;
+            }
+        }
+
+        for(int i = 1 ; i < lightsGroups.Count ; i++)
+        {
+            List<Light> lights = lightsGroups[i].Lights;
+            for(int j = 0 ; j < lights.Count ; j++)
+            {
+                Light light = lights[j];
+                lightsGroups[i].Intensities.Add(0f);
+                if(light)
+                {
+                    light.gameObject.SetActive(false);
+                    lightsGroups[i].Intensities[i] = light.intensity;
+                }
             }
         }
 
@@ -100,10 +116,11 @@ public class LightsManager : MonoBehaviour
     [System.Serializable]
     public class LightsGroup
     {
-        public List<Light> List => list;
+        public List<Light> Lights => lights;
         public List<float> Intensities => intensities;
 
-        [SerializeField] private List<Light> list = null;
+        [SerializeField] private List<Light> lights = null;
         private List<float> intensities = new List<float>();
+
     }
 }

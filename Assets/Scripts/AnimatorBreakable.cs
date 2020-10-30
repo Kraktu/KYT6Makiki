@@ -6,13 +6,15 @@ using RasPacJam.Audio;
 
 public class AnimatorBreakable : MonoBehaviour
 {
-    [SerializeField] private bool isStartAnimation = false;
+    [SerializeField] private bool isRewinding = false;
     [SerializeField] private Vector3 addedHeight = new Vector3(0f, 100f, 0f);
     [SerializeField] private float fallTime = 1f;
     [SerializeField] private float rotatingSpeed = 0.05f;
     [SerializeField] private Vector3 rotation = new Vector3(0f, 0f, 2f);
+    [SerializeField] private float scaleIntensity = 2f;
     [SerializeField] private float explosionDelay = 0.3f;
     [SerializeField] private ParticleSystem explosionParticlesPrefab = null;
+    private Vector3 initialScale;
     private Tween rotationTween;
     private Coroutine falling;
 
@@ -23,13 +25,15 @@ public class AnimatorBreakable : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         AudioManager.Instance.Play("obstacleDestruction");
         rotationTween.Kill();
-        Vector3 extents = GetComponent<Renderer>().bounds.extents;
+        Vector3 center = GetComponent<Renderer>().bounds.center;
+        Vector3 pivotMove = new Vector3(transform.parent.position.x - center.x, transform.parent.position.y - center.y, 0f) * scaleIntensity;
+
         DOTween.Sequence()
-                .Insert(0f, transform.DOScale(new Vector3(2f, 2f, 1f), explosionDelay))
-                .Insert(0f, transform.DOLocalMove(new Vector3(extents.x / 2, - extents.y, 0f), explosionDelay))
+                .Insert(0f, transform.DOScale(new Vector3(scaleIntensity, scaleIntensity, 1f), explosionDelay))
+                .Insert(0f, transform.DOLocalMove(pivotMove, explosionDelay))
                 .OnComplete(() =>
                         {
-                            transform.localScale = Vector3.one;
+                            transform.localScale = initialScale;
                             transform.localPosition = Vector3.zero;
                             GetComponent<Collider>().enabled = true;
                             Explode();
@@ -41,7 +45,7 @@ public class AnimatorBreakable : MonoBehaviour
     {
         Instantiate(explosionParticlesPrefab,
                 GetComponent<Renderer>().bounds.center, Quaternion.identity);
-        if(isStartAnimation)
+        if(isRewinding)
         {
             Despawn();
         }
@@ -80,8 +84,9 @@ public class AnimatorBreakable : MonoBehaviour
         transform.position = endingPos;
     }
 
-    private void Start()
+    private void Awake()
     {
+        initialScale = transform.localScale;
         rotationTween = transform.DOLocalRotate(rotation, rotatingSpeed).SetLoops(-1, LoopType.Yoyo);
     }
 }

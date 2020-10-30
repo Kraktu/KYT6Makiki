@@ -6,11 +6,13 @@ using UnityEngine.Events;
 public class RoofChecker : MonoBehaviour
 {
     public bool IsRoofed => isRoofed;
+    public bool IsInShrinkCollider => isInShrinkCollider;
 
     [SerializeField] private BreakingWaveLauncher breakingWaveLauncher = null;
     [SerializeField] private UnityEvent onRoofExited = null;
     private List<Collider> currentCollisions;
     private bool isRoofed;
+    private bool isInShrinkCollider;
 
 
 
@@ -25,6 +27,7 @@ public class RoofChecker : MonoBehaviour
     {
         currentCollisions = new List<Collider>();
         isRoofed = false;
+        isInShrinkCollider = false;
     }
 
     private void Start()
@@ -39,6 +42,11 @@ public class RoofChecker : MonoBehaviour
             currentCollisions.Add(other);
             isRoofed = true;
         }
+
+        if(other.gameObject.layer == 13)
+        {
+            isInShrinkCollider = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -46,6 +54,11 @@ public class RoofChecker : MonoBehaviour
         if(other.gameObject.layer == 8 || other.gameObject.layer == 9)
         {
             ExitObstacle(other);
+        }
+
+        if(other.gameObject.layer == 13)
+        {
+            isInShrinkCollider = false;
         }
     }
 

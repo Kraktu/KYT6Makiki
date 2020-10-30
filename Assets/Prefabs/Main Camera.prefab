@@ -101,7 +101,11 @@ MonoBehaviour:
   target: {fileID: 0}
   nearOffset: {x: 0, y: 5, z: -15}
   farOffset: {x: 0, y: 5, z: -40}
+  initialOffset: {x: -200, y: 5, z: -40}
   zoomDuration: 1
+  isLookingTowardsPlayer: 1
+  isSmooth: 1
+  smoothSpeed: 0.02
 --- !u!114 &851823345
 MonoBehaviour:
   m_ObjectHideFlags: 0
