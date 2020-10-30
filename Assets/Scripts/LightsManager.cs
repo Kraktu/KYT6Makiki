@@ -35,8 +35,8 @@ public class LightsManager : MonoBehaviour
             {
                 light.gameObject.SetActive(true);
             }
-            AudioManager.Instance.Play("nextLightingLevel");
-            uiStarsCount.text = starsCountForNextLevel.ToString();
+			uiStarsCount.text = starsCount.ToString();
+			AudioManager.Instance.Play("nextLightingLevel");
             Vector3 initialScale = uiStarsPanel.localScale;
             Vector3 finalScale =  initialScale * uiScaleIntensity;
             uiStarsPanel
@@ -44,12 +44,12 @@ public class LightsManager : MonoBehaviour
                     .OnComplete(() =>
                     {
                         uiStarsPanel.DOScale(initialScale, uiScaleDuration);
-                        uiStarsCount.text = "0";
-                    });
+						uistarsCountForNextLevel.text = (starsCountForNextLevel * (lightsGroupIndex + 1)).ToString();
+					});
         }
         else
         {
-            uiStarsCount.text = relativeStarsCount.ToString();
+            uiStarsCount.text = starsCount.ToString();
         }
         AudioManager.Instance.Play("starPickedUp");
     }
