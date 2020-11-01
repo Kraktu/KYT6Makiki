@@ -66,7 +66,7 @@ public class AutoRun : MonoBehaviour
 
         deathSequence
                 .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0f, deathDelay))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0.5f, deathDelay));
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0.3f, deathDelay));
         lightsManager.SwitchLights(deathSequence, false, deathDelay);
         deathSequence.OnComplete(Die);
     }
@@ -89,8 +89,8 @@ public class AutoRun : MonoBehaviour
         }
 
         deathSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0f, revivingDelay))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0.5f, revivingDelay));
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(AudioManager.Instance.InitialReverbVolume, revivingDelay))
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(AudioManager.Instance.InitialMusicVolume, revivingDelay));
         lightsManager.SwitchLights(deathSequence, true, revivingDelay);
     }
 
@@ -98,7 +98,7 @@ public class AutoRun : MonoBehaviour
     {
         lightsManager.SwitchLights(DOTween.Sequence(), true, revivingDelay);
         AudioManager.Instance.GetMusic(MusicName.Main).volume = 0f;
-        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = 0.5f;
+        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = 0.3f;
         AudioManager.Instance.Play("death");
         isDying = false;
         PlayDeathAnimation();
@@ -161,20 +161,22 @@ public class AutoRun : MonoBehaviour
     {
         Sequence resetSequence = DOTween.Sequence();
         resetSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0.5f, 0.3f))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0f, 0.3f));
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(AudioManager.Instance.InitialMusicVolume, 0.3f))
+                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(AudioManager.Instance.InitialReverbVolume, 0.3f));
         Destroy(cloudParticles.gameObject);
         Instantiate(burstParticlesPrefab, particlesLocation);
         onReset.Invoke();
         deathZoneDetector.gameObject.SetActive(true);
         stuckChecker.gameObject.SetActive(true);
         stuckChecker.Reset();
+        roofChecker.gameObject.SetActive(true);
         roofChecker.Reset();
         rb.isKinematic = false;
         foreach(Collider collider in GetComponentsInChildren<Collider>())
         {
             collider.enabled = true;
         }
+        roofChecker.gameObject.SetActive(false);
         SetStopped(false);
     }
 }

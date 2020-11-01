@@ -11,12 +11,14 @@ public class Inputs
         {
             if(instance == null)
             {
-                instance = new Inputs();
+                instance = new Inputs(false);
             }
 
             return instance;
         }
     }
+    private static Inputs instance;
+
     public KeyCode JumpKey { get => jumpKey; set => jumpKey = value; }
     public KeyCode ShrinkKey { get => shrinkKey; set => shrinkKey = value; }
     public KeyCode BreakingWaveKey { get => breakingWaveKey; set => breakingWaveKey = value; }
@@ -26,7 +28,6 @@ public class Inputs
     public bool IsBreakingWaveKeySelected { get => isBreakingWaveKeySelected; set => isBreakingWaveKeySelected = value; }
     public bool IsFreezeKeySelected { get => isFreezeKeySelected; set => isFreezeKeySelected = value; }
 
-    private static Inputs instance;
     private KeyCode jumpKey;
     private KeyCode shrinkKey;
     private KeyCode breakingWaveKey;
@@ -42,29 +43,20 @@ public class Inputs
     {
         if(instance == null)
         {
-            instance = new Inputs();
+            instance = new Inputs(true);
             instance.jumpKey = jumpKey;
             instance.shrinkKey = shrinkKey;
             instance.breakingWaveKey = breakingWaveKey;
             instance.freezeKey = freezeKey;
-            instance.isJumpKeySelected = true;
-            instance.isShrinkKeySelected = true;
-            instance.isBreakingWaveKeySelected = true;
-            instance.isFreezeKeySelected = true;
         }
         return instance;
     }
 
-    public static Inputs Init()
+    public Inputs(bool isInitialized)
     {
-        if(instance == null)
-        {
-            instance = new Inputs();
-            instance.isJumpKeySelected = false;
-            instance.isShrinkKeySelected = false;
-            instance.isBreakingWaveKeySelected = false;
-            instance.isFreezeKeySelected = false;
-        }
-        return instance;
+        isJumpKeySelected = isInitialized;
+        isShrinkKeySelected = isInitialized;
+        isBreakingWaveKeySelected = isInitialized;
+        isFreezeKeySelected = isInitialized;
     }
 }

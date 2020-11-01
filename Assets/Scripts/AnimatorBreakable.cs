@@ -15,6 +15,7 @@ public class AnimatorBreakable : MonoBehaviour
     [SerializeField] private float explosionDelay = 0.3f;
     [SerializeField] private ParticleSystem explosionParticlesPrefab = null;
     private Vector3 initialScale;
+    private Quaternion initialRotation;
     private Tween rotationTween;
     private Coroutine falling;
 
@@ -31,14 +32,7 @@ public class AnimatorBreakable : MonoBehaviour
         DOTween.Sequence()
                 .Insert(0f, transform.DOScale(new Vector3(scaleIntensity, scaleIntensity, 1f), explosionDelay))
                 .Insert(0f, transform.DOLocalMove(pivotMove, explosionDelay))
-                .OnComplete(() =>
-                        {
-                            transform.localScale = initialScale;
-                            transform.localPosition = Vector3.zero;
-                            GetComponent<Collider>().enabled = true;
-                            Explode();
-                        }
-                );
+                .OnComplete(Explode);
     }
 
     public void Explode()
@@ -87,6 +81,15 @@ public class AnimatorBreakable : MonoBehaviour
     private void Awake()
     {
         initialScale = transform.localScale;
+        initialRotation = transform.localRotation;
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = initialScale;
+        transform.localRotation = initialRotation;
+        transform.localPosition = Vector3.zero;
         rotationTween = transform.DOLocalRotate(rotation, rotatingSpeed).SetLoops(-1, LoopType.Yoyo);
+        GetComponent<Collider>().enabled = true;
     }
 }

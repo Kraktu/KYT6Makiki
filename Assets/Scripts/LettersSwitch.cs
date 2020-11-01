@@ -105,6 +105,8 @@ public class LettersSwitch : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.GetMusic(MusicName.Main).volume = 0f;
+        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = 0.3f;
         defaultMaterial = pLetter.material;
     }
 }

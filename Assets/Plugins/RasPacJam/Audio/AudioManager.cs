@@ -7,11 +7,16 @@ namespace RasPacJam.Audio
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance => instance;
+        private static AudioManager instance;
+
+        public float InitialMusicVolume => initialMusicVolume;
+        public float InitialReverbVolume => initialReverbVolume;
 
         [SerializeField] private List<Sound> sounds = null;
         [SerializeField] private AudioSource music = null;
         [SerializeField] private AudioSource musicReverb = null;
-        private static AudioManager instance;
+        private float initialMusicVolume;
+        private float initialReverbVolume;
         private Dictionary<string, float> lastPlayedTimes;
 
         public void Play(string soundName, float delay = 0f)
@@ -60,8 +65,8 @@ namespace RasPacJam.Audio
                 lastPlayedTimes[sound.Name] = 0f;
             }
 
-            music.volume = 0.5f;
-            musicReverb.volume = 0f;
+            initialMusicVolume = music.volume;
+            initialReverbVolume = musicReverb.volume;
 
             DontDestroyOnLoad(this);
         }

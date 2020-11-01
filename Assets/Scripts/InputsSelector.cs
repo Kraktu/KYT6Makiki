@@ -30,10 +30,6 @@ public class InputsSelector : MonoBehaviour
         Vector3 finalScale = inputSelectorLabel.transform.localScale * pulseIntensity;
         inputSelectorLabel.transform.DOScale(finalScale, pulsePeriod).SetLoops(-1, LoopType.Yoyo);
         isSelectionDone = false;
-    }
-
-    private void Start()
-    {
         inputs = Inputs.Instance;
     }
 
@@ -87,24 +83,40 @@ public class InputsSelector : MonoBehaviour
                     switch(keyIndex)
                     {
                         case 0 :
+                            if(inputs.IsJumpKeySelected == true)
+                            {
+                                break;
+                            }
                             inputs.JumpKey = keyCode;
                             inputs.IsJumpKeySelected = true;
                             inputSelectorLabel.text = "press shrink button";
                             inputSelectorLabel.colorGradient = new VertexGradient(primaryColor, primaryColor, shrinkColor, shrinkColor);
                             break;
                         case 1 :
+                            if(inputs.IsShrinkKeySelected == true)
+                            {
+                                break;
+                            }
                             inputs.ShrinkKey = keyCode;
                             inputs.IsShrinkKeySelected = true;
                             inputSelectorLabel.text = "press breaking wave button";
                             inputSelectorLabel.colorGradient = new VertexGradient(primaryColor, primaryColor, breakingWaveColor, breakingWaveColor);
                             break;
                         case 2 :
+                            if(inputs.IsBreakingWaveKeySelected == true)
+                            {
+                                break;
+                            }
                             inputs.BreakingWaveKey = keyCode;
                             inputs.IsBreakingWaveKeySelected = true;
                             inputSelectorLabel.text = "press freeze";
                             inputSelectorLabel.colorGradient = new VertexGradient(primaryColor, primaryColor, freezeColor, freezeColor);
                             break;
                         case 3 :
+                            if(inputs.IsFreezeKeySelected == true)
+                            {
+                                break;
+                            }
                             inputs.FreezeKey = keyCode;
                             inputs.IsFreezeKeySelected = true;
                             inputSelectorLabel.gameObject.SetActive(false);

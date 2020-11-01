@@ -130,7 +130,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.1
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8323479377804849851
 MonoBehaviour:
@@ -475,9 +475,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrinkController: {fileID: 5086307542492547974}
   groundChecker: {fileID: 3687695340895496276}
-  maxJumpHeight: 5
-  maxJumpTime: 0.3
-  hasMomentum: 0
+  maxJumpHeight: 2
+  maxJumpTime: 0.2
+  hasMomentum: 1
 --- !u!114 &5086307542492547974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6ab5b9dc694a64ea0a3d79365b8838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInitializedByPlayer: 0
+  isInitializedByPlayer: 1
   jumpKey: 97
   shrinkKey: 117
   breakingWaveKey: 101
@@ -734,7 +734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3952480940638688214}
   - component: {fileID: 3687695340895496276}
-  - component: {fileID: 305676450134726193}
+  - component: {fileID: 5061865059936396984}
   m_Layer: 0
   m_Name: GroundChecker
   m_TagString: Untagged
@@ -750,7 +750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246855483808790379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.2, z: 0}
+  m_LocalPosition: {x: 0, y: -2.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129487232377235311}
@@ -768,8 +768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fea06d142967c64c8868885d6c3a74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &305676450134726193
-SphereCollider:
+--- !u!136 &5061865059936396984
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -778,8 +778,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.6
+  m_Height: 2.07
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4228439011778784002
 GameObject:
@@ -908,13 +909,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7831627518248576743}
-  m_LocalRotation: {x: 0.23312648, y: 0.6675718, z: -0.23312648, w: 0.6675718}
+  m_LocalRotation: {x: 0.059968524, y: 0.7045593, z: -0.059968524, w: 0.7045593}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129487232377235311}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 38.5, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.73, y: 90, z: 0}
 --- !u!108 &6904681397992013961
 Light:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 3.5
   m_Range: 6.39
-  m_SpotAngle: 94.7
+  m_SpotAngle: 56.2
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:

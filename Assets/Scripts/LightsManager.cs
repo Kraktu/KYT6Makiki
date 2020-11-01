@@ -104,7 +104,7 @@ public class LightsManager : MonoBehaviour
                 if(light)
                 {
                     light.gameObject.SetActive(false);
-                    lightsGroups[i].Intensities[i] = light.intensity;
+                    lightsGroups[i].Intensities[j] = light.intensity;
                 }
             }
         }

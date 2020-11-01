@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using RasPacJam.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
+        AudioManager.Instance.GetMusic(MusicName.Main).volume = AudioManager.Instance.InitialMusicVolume;
+        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = AudioManager.Instance.InitialReverbVolume;
     }
 
     private void InitializeGame()

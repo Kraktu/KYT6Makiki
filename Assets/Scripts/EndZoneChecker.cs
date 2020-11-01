@@ -13,6 +13,7 @@ public class EndZoneChecker : MonoBehaviour
         if(other.gameObject.layer == 12)
         {
             onEndZoneEntered.Invoke();
+            Destroy(other.gameObject);
         }
     }
 }

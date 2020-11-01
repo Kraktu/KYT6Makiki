@@ -22,11 +22,11 @@ public class PlayerInput : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
         if(isInitializedByPlayer)
         {
-            inputs = Inputs.Init();
+            inputs = Inputs.Instance;
         }
         else
         {
