@@ -17,19 +17,26 @@ namespace RasPacJam.Audio
         [SerializeField] private AudioSource musicReverb = null;
         private float initialMusicVolume;
         private float initialReverbVolume;
+        private Dictionary<string, AudioSource> sources;
         private Dictionary<string, float> lastPlayedTimes;
 
         public void Play(string soundName, float delay = 0f)
         {
             if(CanPlay(soundName, delay))
             {
-                AudioSource source = new GameObject("SoundPlayer").AddComponent<AudioSource>();
+                if(!sources.TryGetValue(soundName, out AudioSource source))
+                {
+                    source = new GameObject("SoundPlayer").AddComponent<AudioSource>();
+                    sources.Add(soundName, source);
+                }
+                if(source.isPlaying)
+                {
+                    source.Stop();
+                }
                 Sound sound = GetSoundByName(soundName);
                 source.volume = sound.Volume;
                 source.pitch = sound.Pitch;
                 source.PlayOneShot(sound.Clip);
-
-                Destroy(source.gameObject, sound.Clip.length);
             }
         }
 
@@ -58,6 +65,8 @@ namespace RasPacJam.Audio
             {
                 Destroy(gameObject);
             }
+
+            sources = new Dictionary<string, AudioSource>();
 
             lastPlayedTimes = new Dictionary<string, float>();
             foreach(Sound sound in sounds)

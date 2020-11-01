@@ -14,7 +14,7 @@ public class BrightnessSelector : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(postProcessVolume);
     }
 
     private void Start()

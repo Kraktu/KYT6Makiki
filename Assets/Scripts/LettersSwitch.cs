@@ -90,7 +90,7 @@ public class LettersSwitch : MonoBehaviour
             isLLetterOn = false;
             isALetterOn = false;
             isYLetterOn = false;
-            sceneLoader.LoadLevel(1);
+            sceneLoader.LoadLevel(2);
         }
     }
 

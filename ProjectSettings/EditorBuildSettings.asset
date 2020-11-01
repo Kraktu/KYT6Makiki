@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/BrightnessRocketScene.unity
+    guid: ffe17dc7caeafe54c8d9a8818fb58adc
+  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 5031f61451a67d546bf1f2af0f456918
   - enabled: 1
