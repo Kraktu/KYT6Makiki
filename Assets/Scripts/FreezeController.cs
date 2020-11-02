@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 using RasPacJam.Audio;
 
 public class FreezeController : MonoBehaviour
 {
-    public bool IsFreezing { get => isFreezing; set => isFreezing = value; }
     public bool CanFreeze { get => canFreeze; set => canFreeze = value; }
+    [SerializeField] private float freezeTemperature = 0f;
     [SerializeField] private StuckChecker stuckChecker = null;
     [SerializeField] private UnityEvent onFreezed = null;
     [SerializeField] private UnityEvent onUnfreezed = null;
     [SerializeField] private UnityEvent onUnfreezedWhenStuck = null;
+    private ColorGrading colorGrading;
+    private float initialTemperature;
     private bool isFreezing;
     private bool canFreeze;
 
@@ -56,15 +59,18 @@ public class FreezeController : MonoBehaviour
 
         isFreezing = true;
         AudioManager.Instance.Play("freezing");
+        colorGrading.temperature.value = freezeTemperature;
         onFreezed.Invoke();
     }
 
     public void Unfreeze()
     {
-       if(!isFreezing && !canFreeze)
-       {
-           return;
-       }
+        if(!isFreezing && !canFreeze)
+        {
+            return;
+        }
+
+        colorGrading.temperature.value = initialTemperature;
 
         isFreezing = false;
         // AudioManager.Instance.Play("unfreezing");
@@ -78,11 +84,23 @@ public class FreezeController : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        isFreezing = false;
+        colorGrading.temperature.value = initialTemperature;
+    }
+
 
 
     private void Awake()
     {
         isFreezing = false;
         canFreeze = true;
+    }
+
+    private void Start()
+    {
+        FindObjectOfType<PostProcessVolume>().profile.TryGetSettings<ColorGrading>(out colorGrading);
+        initialTemperature = colorGrading.temperature.value;
     }
 }

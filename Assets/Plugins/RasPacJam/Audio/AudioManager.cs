@@ -28,6 +28,7 @@ namespace RasPacJam.Audio
                 {
                     source = new GameObject("SoundPlayer").AddComponent<AudioSource>();
                     sources.Add(soundName, source);
+                    DontDestroyOnLoad(source);
                 }
                 if(source.isPlaying)
                 {

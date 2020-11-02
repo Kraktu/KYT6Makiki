@@ -404,8 +404,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 680653883234739466}
-        m_MethodName: set_IsFreezing
-        m_Mode: 6
+        m_MethodName: Reset
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caafc6a3b71561f42bf027588788d435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezeTemperature: 60
   stuckChecker: {fileID: 741237463}
   onFreezed:
     m_PersistentCalls:
