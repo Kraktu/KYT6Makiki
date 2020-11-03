@@ -17,7 +17,6 @@ public class AnimatorBreakable : MonoBehaviour
     private Vector3 initialScale;
     private Quaternion initialRotation;
     private Tween rotationTween;
-    private Coroutine falling;
 
 
 
@@ -39,44 +38,24 @@ public class AnimatorBreakable : MonoBehaviour
     {
         Instantiate(explosionParticlesPrefab,
                 GetComponent<Renderer>().bounds.center, Quaternion.identity);
+        gameObject.SetActive(false);
+
         if(isRewinding)
         {
             Despawn();
-        }
-        else
-        {
-            gameObject.SetActive(false);
         }
     }
 
     public void Despawn()
     {
-        if (falling != null)
-        {
-            StopCoroutine(falling);
-        }
-
+        gameObject.SetActive(true);
         transform.position = transform.position + addedHeight;
-        falling = StartCoroutine(Fall());
+        transform
+                .DOMove(transform.position - addedHeight, fallTime)
+                .SetEase(Ease.OutQuint);
     }
 
 
-
-    private IEnumerator Fall()
-    {
-        float time = 0;
-        Vector3 startingPos = transform.position;
-        Vector3 endingPos = transform.position - addedHeight;
-        float tRatio;
-        while(time < fallTime)
-        {
-            tRatio = time / fallTime;
-            transform.position = Vector3.Lerp(startingPos, endingPos, tRatio);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = endingPos;
-    }
 
     private void Awake()
     {

@@ -59,7 +59,10 @@ public class FreezeController : MonoBehaviour
 
         isFreezing = true;
         AudioManager.Instance.Play("freezing");
-        colorGrading.temperature.value = freezeTemperature;
+        if(colorGrading)
+        {
+            colorGrading.temperature.value = freezeTemperature;
+        }
         onFreezed.Invoke();
     }
 
@@ -70,7 +73,10 @@ public class FreezeController : MonoBehaviour
             return;
         }
 
-        colorGrading.temperature.value = initialTemperature;
+        if(colorGrading)
+        {
+            colorGrading.temperature.value = initialTemperature;
+        }
 
         isFreezing = false;
         // AudioManager.Instance.Play("unfreezing");
@@ -87,7 +93,10 @@ public class FreezeController : MonoBehaviour
     public void Reset()
     {
         isFreezing = false;
-        colorGrading.temperature.value = initialTemperature;
+        if(colorGrading)
+        {
+            colorGrading.temperature.value = initialTemperature;
+        }
     }
 
 
@@ -100,7 +109,14 @@ public class FreezeController : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<PostProcessVolume>().profile.TryGetSettings<ColorGrading>(out colorGrading);
-        initialTemperature = colorGrading.temperature.value;
+        PostProcessVolume postProcessVolume = FindObjectOfType<PostProcessVolume>();
+        if(postProcessVolume)
+        {
+            postProcessVolume.profile.TryGetSettings<ColorGrading>(out colorGrading);
+        }
+        if(colorGrading)
+        {
+            initialTemperature = colorGrading.temperature.value;
+        }
     }
 }

@@ -10869,13 +10869,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 087e9db82ecf4744dbcc41c3cd0da475,
+      objectReference: {fileID: 11400000, guid: ea394b88aa6d7f24b9132cfbdc40b959,
         type: 2}
     - target: {fileID: 8723717928787721552, guid: 3d2d1bff86d02dc428d9a940318e9d53,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -8478136393022891829, guid: 087e9db82ecf4744dbcc41c3cd0da475,
+      objectReference: {fileID: 8884176613021601352, guid: ea394b88aa6d7f24b9132cfbdc40b959,
         type: 2}
     - target: {fileID: 9025533961136305164, guid: 3d2d1bff86d02dc428d9a940318e9d53,
         type: 3}
@@ -19347,10 +19347,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1926632488, guid: 12d4f4467b8635b418acce9713e6a03a, type: 3}
-      propertyPath: isInitializedByPlayer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 680653883234739466, guid: 12d4f4467b8635b418acce9713e6a03a,
         type: 3}
       propertyPath: onFreezed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -19465,6 +19461,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 25842133}
+    - target: {fileID: -4866403625706410103, guid: 313ac6753dd9e764eb83fddf10a1b42b,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2190078530745108326, guid: 313ac6753dd9e764eb83fddf10a1b42b,
         type: 3}
       propertyPath: m_Name

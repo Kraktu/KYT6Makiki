@@ -59,10 +59,7 @@ public class AutoRun : MonoBehaviour
         {
             deathSequence.Kill();
         }
-        else
-        {
-            deathSequence = DOTween.Sequence();
-        }
+        deathSequence = DOTween.Sequence();
 
         deathSequence
                 .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0f, deathDelay))
@@ -83,11 +80,8 @@ public class AutoRun : MonoBehaviour
         {
             deathSequence.Kill();
         }
-        else
-        {
-            deathSequence = DOTween.Sequence();
-        }
 
+        deathSequence = DOTween.Sequence();
         deathSequence
                 .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(AudioManager.Instance.InitialReverbVolume, revivingDelay))
                 .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(AudioManager.Instance.InitialMusicVolume, revivingDelay));

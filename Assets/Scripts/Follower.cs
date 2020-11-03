@@ -9,20 +9,20 @@ public class Follower : MonoBehaviour
     [SerializeField] private Vector3 nearOffset = new Vector3(0f, 5f, -15f);
     [SerializeField] private Vector3 farOffset = new Vector3(0f, 5f, -40f);
     [SerializeField] private Vector3 initialOffset = new Vector3(0f, 0f, 0f);
-    [SerializeField] private float zoomDuration = 1f;
     [SerializeField] private bool isLookingTowardsPlayer = false;
     [SerializeField] private bool isSmooth = false;
-    [SerializeField] private float smoothSpeed = 0.1f;
+    [SerializeField] private float smoothDuration = 5f;
+    private Tweener cameraZoomTween;
     private Vector3 offset;
-    private Tween cameraTween;
+    private Vector3 velocity;
 
 
 
     public void Zoom(bool isZoomingIn)
     {
-        if(cameraTween != null)
+        if(cameraZoomTween != null)
         {
-            cameraTween.Kill();
+            cameraZoomTween.Kill();
         }
 
         offset = isZoomingIn ? nearOffset : farOffset;
@@ -31,8 +31,10 @@ public class Follower : MonoBehaviour
 
     private void Awake()
     {
-        offset = nearOffset;
+        cameraZoomTween = null;
         transform.position = target.position + initialOffset;
+        offset = nearOffset;
+        velocity = Vector3.zero;
     }
 
     private void LateUpdate()
@@ -40,8 +42,7 @@ public class Follower : MonoBehaviour
         Vector3 finalPosition = target.position + offset;
         if(isSmooth)
         {
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, finalPosition, smoothSpeed);
-            transform.position = smoothedPosition;
+            transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref velocity, smoothDuration);
         }
         else
         {

@@ -22,7 +22,7 @@ public class BreakingWaveLauncher : MonoBehaviour
 
     public void Launch()
     {
-        AudioManager.Instance.Play("breakingWaveLaunch");
+        AudioManager.Instance.Play("attack");
         wave = Instantiate(wavePrefab, transform);
         var shape = wave.shape;
         shape.radius = transform.parent.localScale.z * playerCollider.transform.localScale.z * playerCollider.radius;
