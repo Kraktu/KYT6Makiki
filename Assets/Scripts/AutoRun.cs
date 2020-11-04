@@ -25,7 +25,7 @@ public class AutoRun : MonoBehaviour
     private Vector3 startPosition;
     private Rigidbody rb;
     private ParticleSystem cloudParticles;
-    private Sequence deathSequence;
+    private Sequence dyingSequence;
     private bool isDying;
     private bool isStopped;
 
@@ -55,17 +55,15 @@ public class AutoRun : MonoBehaviour
         }
 
         isDying = true;
-        if(deathSequence != null && deathSequence.IsActive())
+        if(dyingSequence != null && dyingSequence.IsActive())
         {
-            deathSequence.Kill();
+            dyingSequence.Kill();
         }
-        deathSequence = DOTween.Sequence();
+        dyingSequence = DOTween.Sequence();
 
-        deathSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(0f, deathDelay))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(0.3f, deathDelay));
-        lightsManager.SwitchLights(deathSequence, false, deathDelay);
-        deathSequence.OnComplete(Die);
+        AudioManager.Instance.SwitchReverb(true, false, dyingSequence, deathDelay);
+        lightsManager.SwitchLights(dyingSequence, false, deathDelay);
+        dyingSequence.OnComplete(Die);
     }
 
     public void StopDying()
@@ -76,23 +74,22 @@ public class AutoRun : MonoBehaviour
         }
 
         isDying = false;
-        if(deathSequence != null && deathSequence.IsActive())
+        if(dyingSequence != null && dyingSequence.IsActive())
         {
-            deathSequence.Kill();
+            dyingSequence.Kill();
         }
 
-        deathSequence = DOTween.Sequence();
-        deathSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(AudioManager.Instance.InitialReverbVolume, revivingDelay))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(AudioManager.Instance.InitialMusicVolume, revivingDelay));
-        lightsManager.SwitchLights(deathSequence, true, revivingDelay);
+        dyingSequence = DOTween.Sequence();
+
+        AudioManager.Instance.SwitchReverb(false, false, dyingSequence, revivingDelay);
+        lightsManager.SwitchLights(dyingSequence, true, revivingDelay);
     }
 
     public void Die()
     {
-        lightsManager.SwitchLights(DOTween.Sequence(), true, revivingDelay);
-        AudioManager.Instance.GetMusic(MusicName.Main).volume = 0f;
-        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = 0.3f;
+        Sequence deathSequence = DOTween.Sequence();
+        lightsManager.SwitchLights(deathSequence, true, revivingDelay);
+        AudioManager.Instance.SwitchReverb(true, true, deathSequence, revivingDelay);
         AudioManager.Instance.Play("death");
         isDying = false;
         PlayDeathAnimation();
@@ -110,7 +107,7 @@ public class AutoRun : MonoBehaviour
     {
         startPosition = transform.position;
         rb = GetComponent<Rigidbody>();
-        deathSequence = null;
+        dyingSequence = null;
         isStopped = false;
         isDying = false;
     }
@@ -127,9 +124,9 @@ public class AutoRun : MonoBehaviour
 
     private void PlayDeathAnimation()
     {
-        if(deathSequence != null && deathSequence.IsActive())
+        if(dyingSequence != null && dyingSequence.IsActive())
         {
-            deathSequence.Kill();
+            dyingSequence.Kill();
         }
         SetStopped(true);
         foreach(Collider collider in GetComponentsInChildren<Collider>())
@@ -154,12 +151,9 @@ public class AutoRun : MonoBehaviour
     private void FinalizeAnimation()
     {
         Sequence resetSequence = DOTween.Sequence();
-        resetSequence
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Main).DOFade(AudioManager.Instance.InitialMusicVolume, 0.3f))
-                .Insert(0f, AudioManager.Instance.GetMusic(MusicName.Reverb).DOFade(AudioManager.Instance.InitialReverbVolume, 0.3f));
+        AudioManager.Instance.ResetMusic();
         Destroy(cloudParticles.gameObject);
         Instantiate(burstParticlesPrefab, particlesLocation);
-        onReset.Invoke();
         deathZoneDetector.gameObject.SetActive(true);
         stuckChecker.gameObject.SetActive(true);
         stuckChecker.Reset();
@@ -171,6 +165,7 @@ public class AutoRun : MonoBehaviour
             collider.enabled = true;
         }
         roofChecker.gameObject.SetActive(false);
+        onReset.Invoke();
         SetStopped(false);
     }
 }

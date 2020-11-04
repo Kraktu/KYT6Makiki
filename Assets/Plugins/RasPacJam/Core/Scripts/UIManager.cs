@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup pauseWindow = null;
     [SerializeField] private CanvasGroup gameOverWindow = null;
-    [SerializeField] private TextMeshProUGUI scoreValue = null;
     [SerializeField] private float fadeDuration = 1f;
 
 
@@ -23,9 +22,8 @@ public class UIManager : MonoBehaviour
         CloseWindow(pauseWindow);
     }
 
-    public void OpenGameOverWindow(float score)
+    public void OpenGameOverWindow()
     {
-        scoreValue.text = score.ToString();
         OpenWindow(gameOverWindow);
     }
 

@@ -6,12 +6,10 @@ using RasPacJam.Audio;
 public class GameManager : MonoBehaviour
 {
     public bool IsGameRunning => isGameRunning;
-    public float Score { get => score; set => score = Mathf.Max(0, value); }
 
     [SerializeField] private UIManager uiManager = null;
     [SerializeField] private SceneLoader sceneLoader = null;
     private bool isGameRunning;
-    private float score;
 
 
 
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        uiManager.OpenGameOverWindow(score);
+        uiManager.OpenGameOverWindow();
     }
 
     public void QuitGame()
@@ -50,8 +48,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
-        AudioManager.Instance.GetMusic(MusicName.Main).volume = AudioManager.Instance.InitialMusicVolume;
-        AudioManager.Instance.GetMusic(MusicName.Reverb).volume = AudioManager.Instance.InitialReverbVolume;
+        AudioManager.Instance.ResetMusic();
     }
 
     private void InitializeGame()

@@ -19,6 +19,8 @@ public class RoofChecker : MonoBehaviour
     public void Reset()
     {
         currentCollisions.Clear();
+        isRoofed = false;
+        isInShrinkCollider = false;
     }
 
 

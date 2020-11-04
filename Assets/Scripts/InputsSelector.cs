@@ -31,6 +31,10 @@ public class InputsSelector : MonoBehaviour
         inputSelectorLabel.transform.DOScale(finalScale, pulsePeriod).SetLoops(-1, LoopType.Yoyo);
         isSelectionDone = false;
         inputs = Inputs.Instance;
+        inputs.IsJumpKeySelected = false;
+        inputs.IsShrinkKeySelected = false;
+        inputs.IsBreakingWaveKeySelected = false;
+        inputs.IsFreezeKeySelected = false;
     }
 
     private void Update()

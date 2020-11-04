@@ -9,6 +9,8 @@ using RasPacJam.Audio;
 public class FreezeController : MonoBehaviour
 {
     public bool CanFreeze { get => canFreeze; set => canFreeze = value; }
+    public bool IsFreezing => isFreezing;
+
     [SerializeField] private float freezeTemperature = 0f;
     [SerializeField] private StuckChecker stuckChecker = null;
     [SerializeField] private UnityEvent onFreezed = null;
@@ -37,7 +39,6 @@ public class FreezeController : MonoBehaviour
        else if(action.canceled)
        {
            isFreezing = false;
-           // AudioManager.Instance.Play("unfreezing");
            if(stuckChecker.IsStuck)
            {
                onUnfreezedWhenStuck.Invoke();
@@ -79,7 +80,7 @@ public class FreezeController : MonoBehaviour
         }
 
         isFreezing = false;
-        // AudioManager.Instance.Play("unfreezing");
+        AudioManager.Instance.Stop("freezing");
         if(stuckChecker.IsStuck)
         {
             onUnfreezedWhenStuck.Invoke();

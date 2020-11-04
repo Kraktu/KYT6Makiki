@@ -8,6 +8,7 @@ public class StuckChecker : MonoBehaviour
     public bool IsStuck => isStuck;
 
     [SerializeField] private BreakingWaveLauncher breakingWaveLauncher = null;
+    [SerializeField] private FreezeController freezeController = null;
     [SerializeField] private UnityEvent onStuck = null;
     [SerializeField] private UnityEvent onEscaped = null;
     private List<Collider> currentCollisions;
@@ -61,7 +62,10 @@ public class StuckChecker : MonoBehaviour
         if(currentCollisions.Count == 0)
         {
             isStuck = false;
-            onEscaped.Invoke();
+            if(!freezeController.IsFreezing)
+            {
+                onEscaped.Invoke();
+            }
         }
     }
 

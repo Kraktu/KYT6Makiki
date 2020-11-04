@@ -54,7 +54,7 @@ public class LightsManager : MonoBehaviour
         AudioManager.Instance.Play("starPickedUp");
     }
 
-    public void SwitchLights(Sequence sequence, bool isSwitchingOn, float delay)
+    public void SwitchLights(Sequence sequence, bool isSwitchingOn, float duration)
     {
         foreach(LightsGroup lightsGroup in lightsGroups)
         {
@@ -63,7 +63,7 @@ public class LightsManager : MonoBehaviour
                 if(lightsGroup.Lights[i])
                 {
                     float intensity = isSwitchingOn ? lightsGroup.Intensities[i] : 0f;
-                    sequence.Insert(0f, lightsGroup.Lights[i].DOIntensity(intensity, delay));
+                    sequence.Insert(0f, lightsGroup.Lights[i].DOIntensity(intensity, duration));
                 }
             }
         }

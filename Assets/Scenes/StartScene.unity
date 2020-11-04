@@ -342,6 +342,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2346467648285170854, guid: 7b213d2d8028eb34ab33e3f7c7aaa6c9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.08968
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346467648285170854, guid: 7b213d2d8028eb34ab33e3f7c7aaa6c9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.099120006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346467648285170854, guid: 7b213d2d8028eb34ab33e3f7c7aaa6c9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.118
+      objectReference: {fileID: 0}
     - target: {fileID: 4417344766108069874, guid: 7b213d2d8028eb34ab33e3f7c7aaa6c9,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1431,31 +1446,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: s_AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].name
-      value: unfreezing
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3212f05797917f64c9f1afec703a90e5, type: 3}
-    - target: {fileID: 4737073558231910478, guid: 203bead9f8db5bd48820121ae91d1cca,
-        type: 3}
-      propertyPath: sounds.Array.data[10].volume
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4969980041752704249, guid: 203bead9f8db5bd48820121ae91d1cca,
         type: 3}
@@ -4291,17 +4281,17 @@ PrefabInstance:
     - target: {fileID: 2190078530745108376, guid: 313ac6753dd9e764eb83fddf10a1b42b,
         type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.14901961
+      value: 0.11681203
       objectReference: {fileID: 0}
     - target: {fileID: 2190078530745108376, guid: 313ac6753dd9e764eb83fddf10a1b42b,
         type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.16470589
+      value: 0.13713732
       objectReference: {fileID: 0}
     - target: {fileID: 2190078530745108376, guid: 313ac6753dd9e764eb83fddf10a1b42b,
         type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.19607843
+      value: 0.1981132
       objectReference: {fileID: 0}
     - target: {fileID: 2190078530745108377, guid: 313ac6753dd9e764eb83fddf10a1b42b,
         type: 3}
