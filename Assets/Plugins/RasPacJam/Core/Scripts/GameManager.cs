@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
-        AudioManager.Instance.ResetMusic();
+        AudioManager.Instance.SwitchReverb(false);
     }
 
     private void InitializeGame()

@@ -26,7 +26,7 @@ public class BrightnessSelector : MonoBehaviour
     private void Start()
     {
         postProcessVolume.profile.TryGetSettings<ColorGrading>(out colorGrading);
-        AudioManager.Instance.PlayOnlyDrums();
+        AudioManager.Instance.SwitchReverb(true);
     }
 
     private void Update()

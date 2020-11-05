@@ -61,7 +61,7 @@ public class AutoRun : MonoBehaviour
         }
         dyingSequence = DOTween.Sequence();
 
-        AudioManager.Instance.SwitchReverb(true, false, dyingSequence, deathDelay);
+        AudioManager.Instance.SwitchReverb(true, dyingSequence, deathDelay);
         lightsManager.SwitchLights(dyingSequence, false, deathDelay);
         dyingSequence.OnComplete(Die);
     }
@@ -81,7 +81,7 @@ public class AutoRun : MonoBehaviour
 
         dyingSequence = DOTween.Sequence();
 
-        AudioManager.Instance.SwitchReverb(false, false, dyingSequence, revivingDelay);
+        AudioManager.Instance.SwitchReverb(false, dyingSequence, revivingDelay);
         lightsManager.SwitchLights(dyingSequence, true, revivingDelay);
     }
 
@@ -89,7 +89,7 @@ public class AutoRun : MonoBehaviour
     {
         Sequence deathSequence = DOTween.Sequence();
         lightsManager.SwitchLights(deathSequence, true, revivingDelay);
-        AudioManager.Instance.SwitchReverb(true, true, deathSequence, revivingDelay);
+        AudioManager.Instance.SwitchReverb(true, deathSequence, revivingDelay);
         AudioManager.Instance.Play("death");
         isDying = false;
         PlayDeathAnimation();
@@ -151,7 +151,7 @@ public class AutoRun : MonoBehaviour
     private void FinalizeAnimation()
     {
         Sequence resetSequence = DOTween.Sequence();
-        AudioManager.Instance.ResetMusic();
+        AudioManager.Instance.SwitchReverb(false, resetSequence, deathDelay);
         Destroy(cloudParticles.gameObject);
         Instantiate(burstParticlesPrefab, particlesLocation);
         deathZoneDetector.gameObject.SetActive(true);
