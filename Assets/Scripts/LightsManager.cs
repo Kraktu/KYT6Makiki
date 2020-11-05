@@ -44,7 +44,10 @@ public class LightsManager : MonoBehaviour
                     .OnComplete(() =>
                     {
                         uiStarsPanel.DOScale(initialScale, uiScaleDuration);
-						uistarsCountForNextLevel.text = (starsCountForNextLevel * (lightsGroupIndex + 1)).ToString();
+                        if(lightsGroupIndex < lightsGroups.Count - 1)
+                        {
+						    uistarsCountForNextLevel.text = (starsCountForNextLevel * (lightsGroupIndex + 1)).ToString();
+                        }
 					});
         }
         else
